@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "~=3.7.9"
+black = "~=19.10b0"
+
+[packages]
+django = "~=3.0.4"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
