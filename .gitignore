@@ -123,3 +123,7 @@ dmypy.json
 
 # VS code
 .vscode
+
+# Environment
+.env*
+!.env.example
