@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
+import django_heroku
 
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -87,11 +87,6 @@ DATABASES = {
         "HOST": os.environ.get("DATABASE_HOST", "localhost"),
         "PORT": os.environ.get("DATABASE_PORT", "5432"),
     }
-    if DEBUG
-    else (
-        # _must_ use database URL environment variable provided by Heroku for production and staging
-        dj_database_url.config(env=("DATABASE_URL"))
-    )
 }
 
 # Password validation
@@ -124,3 +119,5 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+# Activate Django-Heroku.
+django_heroku.settings(locals())
