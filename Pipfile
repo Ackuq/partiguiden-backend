@@ -10,6 +10,10 @@ black = "~=19.10b0"
 [packages]
 django = "~=3.0.4"
 psycopg2-binary = "~=2.8.4"
+coreapi = "~=2.3.3"
+djangorestframework = "~=3.11.0"
+pyyaml = "~=5.3"
+django-filter = "~=2.2.0"
 
 [requires]
 python_version = "3.8"

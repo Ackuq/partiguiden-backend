@@ -30,14 +30,18 @@ ALLOWED_HOSTS = str(os.environ.get("DJANGO_ALLOWED_HOSTS")).split(" ")
 # Application definition
 
 INSTALLED_APPS = [
-    "standpoints.apps.StandpointsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_filters",
+    "rest_framework",
+    "standpoints",
 ]
+
+REST_FRAMEWORK = {"DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
