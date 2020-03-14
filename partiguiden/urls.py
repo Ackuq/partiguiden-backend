@@ -11,7 +11,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("token/", TokenObtainPairView.as_view(), name="token"),
-    path("token/", TokenRefreshView.as_view(), name="refresh"),
+    path("refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("", include("standpoints.urls")),
 ]
