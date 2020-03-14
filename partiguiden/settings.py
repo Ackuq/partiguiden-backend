@@ -64,7 +64,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-CORS_ORIGIN_WHITELIST = str(os.environ.get("DJANGO_CORS_WHITELIST")).split(" ")
+if DEBUG:
+    CORS_ORIGIN_WHITELIST = str(os.environ.get("DJANGO_CORS_WHITELIST")).split(" ")
 
 ROOT_URLCONF = "partiguiden.urls"
 
