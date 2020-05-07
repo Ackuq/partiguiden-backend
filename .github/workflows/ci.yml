@@ -1,0 +1,22 @@
+name: CI Workflow
+
+on: [push]
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install pipenv
+        run: pip install pipenv
+      - name: Install PIP dependencies
+        run: pipenv install --dev
+      - name: Lint with Flake8
+        run: pipenv run flake8 --config .config/flake8.cfg
+      - name: Lint with Black
+        run: pipenv run black $(ls -d */) --config .config/black.cfg --check

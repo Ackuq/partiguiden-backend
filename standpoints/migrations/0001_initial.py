@@ -8,36 +8,59 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Party',
+            name="Party",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, verbose_name='Partinamn')),
-                ('abbreviation', models.CharField(max_length=10, verbose_name='Partiförkortning')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=50, verbose_name="Partinamn")),
+                ("abbreviation", models.CharField(max_length=10, verbose_name="Partiförkortning")),
             ],
         ),
         migrations.CreateModel(
-            name='Subject',
+            name="Subject",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, verbose_name='Sakområde')),
-                ('related_subject', models.ManyToManyField(blank=True, related_name='_subject_related_subject_+', to='standpoints.Subject', verbose_name='Relaterade sakområden')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("name", models.CharField(max_length=50, verbose_name="Sakområde")),
+                (
+                    "related_subject",
+                    models.ManyToManyField(
+                        blank=True,
+                        related_name="_subject_related_subject_+",
+                        to="standpoints.Subject",
+                        verbose_name="Relaterade sakområden",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Standpoint',
+            name="Standpoint",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(default='Titel', max_length=50, verbose_name='Ståndpunkt')),
-                ('content', models.TextField(verbose_name='Åsikt')),
-                ('date', models.DateField(auto_now_add=True, null=True, verbose_name='datum')),
-                ('link', models.CharField(max_length=100, unique=True, verbose_name='Länk')),
-                ('party', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='standpoints.Party', verbose_name='Parti')),
-                ('subject', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='standpoints.Subject', verbose_name='Sakområde')),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("title", models.CharField(default="Titel", max_length=50, verbose_name="Ståndpunkt")),
+                ("content", models.TextField(verbose_name="Åsikt")),
+                ("date", models.DateField(auto_now_add=True, null=True, verbose_name="datum")),
+                ("link", models.CharField(max_length=100, unique=True, verbose_name="Länk")),
+                (
+                    "party",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="standpoints.Party",
+                        verbose_name="Parti",
+                    ),
+                ),
+                (
+                    "subject",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="standpoints.Subject",
+                        verbose_name="Sakområde",
+                    ),
+                ),
             ],
         ),
     ]

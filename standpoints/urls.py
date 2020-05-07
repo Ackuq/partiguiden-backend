@@ -8,4 +8,3 @@ router.register("parties", views.PartyView)
 router.register("subjects", views.SubjectView)
 
 urlpatterns = [path("", include(router.urls))]
-
