@@ -18,4 +18,3 @@ class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
         fields = ("id", "name", "related_subject")
-
