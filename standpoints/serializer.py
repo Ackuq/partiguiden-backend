@@ -11,7 +11,7 @@ class StandpointSerializer(serializers.ModelSerializer):
 class PartySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Party
-        fields = ("id", "url", "name", "abbreviation")
+        fields = ("url", "name", "abbreviation")
 
 
 class SubjectSerializer(serializers.ModelSerializer):
