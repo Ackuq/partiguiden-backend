@@ -78,7 +78,7 @@ if "SENTRY_DSN" in os.environ:
         # If you wish to associate users to errors (assuming you are using
         # django.contrib.auth) you may enable sending PII data.
         send_default_pii=True,
-        environment=os.environ.get("ENV", "staging")
+        environment=os.environ.get("ENV", "staging"),
     )
 
 CORS_ORIGIN_WHITELIST = str(os.environ.get("DJANGO_CORS_WHITELIST")).split(" ")
