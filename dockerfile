@@ -1,4 +1,4 @@
-FROM python:3.8.1
+FROM python:3.8.2
 
 # Get pipenv
 RUN pip install pipenv
@@ -7,7 +7,7 @@ RUN pip install pipenv
 RUN mkdir -p /usr/src/partiguiden-backend
 WORKDIR /usr/src/partiguiden-backend
 
-RUN pipenv install
-
 # Copy application code
 COPY . /usr/src/partiguiden-backend
+
+RUN pipenv install
