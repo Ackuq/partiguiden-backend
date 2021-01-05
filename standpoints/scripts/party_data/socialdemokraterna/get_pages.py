@@ -1,7 +1,9 @@
-from ..data_entry import DataEntry
 from typing import List
+
 import requests
 from bs4 import BeautifulSoup
+
+from ..data_entry import DataEntry
 from .get_opinions import get_opinions
 
 URL = "https://www.socialdemokraterna.se/var-politik/a-till-o"

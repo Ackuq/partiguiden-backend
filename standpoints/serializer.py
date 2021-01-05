@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Standpoint, Party, Subject
+
+from .models import Party, Standpoint, Subject
 
 
 class StandpointSerializer(serializers.ModelSerializer):

@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 flake8 = "~=3.8.4"
 black = "~=20.8b1"
+isort = "~=5.7.0"
 
 [packages]
 django = "~=3.1"
@@ -18,10 +19,15 @@ django-heroku = "*"
 django-cors-headers = "*"
 djangorestframework-simplejwt = "~=4.6.0"
 sentry-sdk = "~=0.19.5"
-beautifulsoup4 = "*"
+beautifulsoup4 = "~=4.9.3"
 
 [requires]
 python_version = "3.8"
 
 [pipenv]
 allow_prereleases = true
+
+[scripts]
+format = "black --config ./.config/black.cfg ."
+lint = "flake8 --config ./.config/flake8.cfg"
+import-sort = "isort --settings-path ./.config/isort.cfg ."
