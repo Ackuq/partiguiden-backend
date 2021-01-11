@@ -29,7 +29,10 @@ class StandpointView(viewsets.ModelViewSet):
     def update_standpoints(self, request):
         abbreviation = request.GET.get("party")
         if abbreviation is None:
-            return Response("Request must include a specific party", status=HttpResponseBadRequest.status_code)
+            return Response(
+                "Request must include a specific party",
+                status=HttpResponseBadRequest.status_code,
+            )
 
         try:
             party = Party.objects.get(pk=abbreviation)
@@ -45,7 +48,11 @@ class StandpointView(viewsets.ModelViewSet):
                     existing.save()
                 except Standpoint.DoesNotExist:
                     Standpoint.objects.create(
-                        id=id, title=page.title, content=page.opinions, link=page.url, party=party
+                        id=id,
+                        title=page.title,
+                        content=page.opinions,
+                        link=page.url,
+                        party=party,
                     )
 
         except Party.DoesNotExist:
