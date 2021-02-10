@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Standpoint, Party, Subject
+
+from .models import Party, Standpoint, Subject
 
 
 class StandpointSerializer(serializers.ModelSerializer):
@@ -11,7 +12,7 @@ class StandpointSerializer(serializers.ModelSerializer):
 class PartySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Party
-        fields = ("id", "url", "name", "abbreviation")
+        fields = ("url", "name", "abbreviation")
 
 
 class SubjectSerializer(serializers.ModelSerializer):
