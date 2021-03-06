@@ -15,13 +15,13 @@ def get_pages() -> List[DataEntry]:
     page = requests.get(URL)
 
     soup = BeautifulSoup(page.text, "html.parser")
-    pages = soup.select(SELECTOR)
+    elements = soup.select(SELECTOR)
 
     result: List[DataEntry] = []
 
-    for page in pages:
-        title = page.text
-        url = "https://www.centerpartiet.se" + page["href"]
+    for element in elements:
+        title = element.text
+        url = "https://www.centerpartiet.se" + element["href"]
         opinions = get_opinions(url)
 
         result.append(DataEntry(title, url, opinions))
