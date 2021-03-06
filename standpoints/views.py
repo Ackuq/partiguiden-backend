@@ -1,4 +1,5 @@
 from threading import Thread
+
 from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
 from django_filters.filters import BooleanFilter, CharFilter
 from django_filters.filterset import FilterSet
@@ -7,10 +8,9 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
-
 from .models import Party, Standpoint, Subject
-from .serializer import PartySerializer, StandpointSerializer, SubjectSerializer
 from .scripts.update_standpoints import update_standpoints
+from .serializer import PartySerializer, StandpointSerializer, SubjectSerializer
 
 
 class StandpointFilter(FilterSet):
