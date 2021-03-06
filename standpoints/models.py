@@ -6,7 +6,7 @@ class Party(models.Model):
     def __str__(self):
         return self.name
 
-    abbreviation = models.CharField(max_length=10, verbose_name="Partiförkortning", unique=True, primary_key=True)
+    id = models.CharField(max_length=10, verbose_name="Partiförkortning", primary_key=True)
     name = models.CharField(max_length=50, verbose_name="Partinamn", unique=True)
 
 

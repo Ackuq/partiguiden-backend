@@ -18,12 +18,12 @@ from .serializer import PartySerializer, StandpointSerializer, SubjectSerializer
 
 
 class StandpointFilter(FilterSet):
-    party__abbreviation = CharFilter(lookup_expr="iexact")
+    party__id = CharFilter(lookup_expr="iexact")
     uncategorized = BooleanFilter(field_name="subject", lookup_expr="isnull")
 
     class Meta:
         model = Standpoint
-        fields = ("party", "party__abbreviation", "subject")
+        fields = ("party", "party__id", "subject")
 
 
 class StandpointView(viewsets.ModelViewSet):
@@ -37,10 +37,10 @@ class StandpointView(viewsets.ModelViewSet):
         for invalid_id in invalid_ids:
             Standpoint.objects.get(pk=invalid_id).delete()
 
-    def __handle_standpoints_update(self, abbreviation: str) -> BaseManager[Standpoint]:
-        party = Party.objects.get(pk=abbreviation.upper())
+    def __handle_standpoints_update(self, party_id: str) -> BaseManager[Standpoint]:
+        party = Party.objects.get(pk=party_id.upper())
         self.__purge_old(party)
-        pages = get_party_data(abbreviation)
+        pages = get_party_data(party_id)
 
         for page in pages:
             id = sha256(page.url.encode("utf-8")).hexdigest()
@@ -62,23 +62,23 @@ class StandpointView(viewsets.ModelViewSet):
 
     @action(detail=False, permission_classes=[IsAdminUser])
     def update_standpoints(self, request):
-        abbreviation: str = request.GET.get("party")
-        if abbreviation is None:
+        party_id: str = request.GET.get("party")
+        if party_id is None:
             return Response(
                 "Request must include a specific party",
                 status=HttpResponseBadRequest.status_code,
             )
         try:
-            if abbreviation.lower() == "all":
-                all_abbreviations = list(Party.objects.values_list("abbreviation", flat=True))
+            if party_id.lower() == "all":
+                all_ids = list(Party.objects.values_list("id", flat=True))
                 all_data = []
-                for abbv in all_abbreviations:
-                    queryset = self.__handle_standpoints_update(abbv)
+                for id in all_ids:
+                    queryset = self.__handle_standpoints_update(id)
                     serializer = self.get_serializer(queryset, many=True)
                     all_data += serializer.data
                 return Response(all_data)
             else:
-                queryset = self.__handle_standpoints_update(abbreviation)
+                queryset = self.__handle_standpoints_update(party_id)
                 serializer = self.get_serializer(queryset, many=True)
                 return Response(serializer.data)
 
