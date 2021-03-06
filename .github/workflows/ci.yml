@@ -18,7 +18,13 @@ jobs:
               run: pipenv install --dev
             - name: Lint with Flake8
               run: pipenv run lint
+              if: always()
             - name: Lint with Black
               run: pipenv run format --check
+              if: always()
             - name: Import sort with isort
               run: pipenv run import-sort --check
+              if: always()
+            - name: Type check with mypy
+              run: pipenv run mypy
+              if: always()
