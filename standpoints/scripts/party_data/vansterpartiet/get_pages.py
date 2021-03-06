@@ -4,9 +4,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-from standpoints.scripts.party_data.data_queue import Queue
-
-from ..data_entry import DataEntry
+from ..data import DataEntry, Queue
 from .get_opinions import get_opinions
 
 URL = "https://www.vansterpartiet.se/politik-a-o/"
@@ -29,7 +27,7 @@ def get_pages() -> List[DataEntry]:
     queue = Queue()
 
     for element in elements:
-        title = element.text
+        title = element["title"]
         url = element["href"]
         thread = Thread(target=get_opinions_wrapper, args=(queue, title, url))
         thread.start()

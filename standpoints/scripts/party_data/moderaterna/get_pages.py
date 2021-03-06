@@ -4,9 +4,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-from standpoints.scripts.party_data.data_queue import Queue
-
-from ..data_entry import DataEntry
+from ..data import DataEntry, Queue
 from .get_opinions import get_opinions
 
 URL = "https://moderaterna.se/var-politik"

@@ -12,3 +12,15 @@ class DataEntry:
     title: str
     url: str
     opinions: List[str]
+
+
+class Queue:
+    def __init__(self):
+        self.queue: List[DataEntry] = []
+
+    def enqueue(self, data: DataEntry):
+        self.queue.append(data)
+        return data
+
+    def get(self) -> List[DataEntry]:
+        return self.queue

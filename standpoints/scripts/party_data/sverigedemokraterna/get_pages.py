@@ -3,7 +3,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-from ..data_entry import DataEntry
+from ..data import DataEntry
 
 URL = "https://sd.se/a-o/"
 
