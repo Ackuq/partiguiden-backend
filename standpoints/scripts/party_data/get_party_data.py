@@ -12,7 +12,7 @@ from .vansterpartiet.get_pages import get_pages as get_pages_v
 
 
 def get_party_data(abbreviation: str) -> List[DataEntry]:
-    abbv_upper = abbreviation.lower()
+    abbv_upper = abbreviation.upper()
     if abbv_upper == "S":
         return get_pages_s()
     elif abbv_upper == "M":
