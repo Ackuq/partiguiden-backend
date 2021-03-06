@@ -3,7 +3,7 @@ from typing import List
 
 from django.db.models.manager import BaseManager
 from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
-from django_filters.filters import CharFilter
+from django_filters.filters import BooleanFilter, CharFilter
 from django_filters.filterset import FilterSet
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -19,6 +19,7 @@ from .serializer import PartySerializer, StandpointSerializer, SubjectSerializer
 
 class StandpointFilter(FilterSet):
     party__abbreviation = CharFilter(lookup_expr="iexact")
+    uncategorized = BooleanFilter(field_name="subject", lookup_expr="isnull")
 
     class Meta:
         model = Standpoint
