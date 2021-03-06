@@ -1,7 +1,7 @@
 from typing import List
 
 from .centerpartiet.get_pages import get_pages as get_pages_c
-from .data_entry import DataEntry
+from .data import DataEntry
 from .kristdemokraterna.get_pages import get_pages as get_pages_kd
 from .liberalerna.get_pages import get_pages as get_pages_l
 from .miljopartiet.get_pages import get_pages as get_pages_mp

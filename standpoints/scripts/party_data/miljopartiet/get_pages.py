@@ -1,14 +1,20 @@
+from threading import Thread
 from typing import List
 
 import requests
 from bs4 import BeautifulSoup
 
-from ..data_entry import DataEntry
+from ..data import DataEntry, Queue
 from .get_opinions import get_opinions
 
 URL = "https://www.mp.se/politik"
 
 SELECTOR = "#topics a"
+
+
+def get_opinions_wrapper(queue: Queue, title: str, url: str):
+    opinions = get_opinions(url)
+    queue.enqueue(DataEntry(title, url, opinions))
 
 
 def get_pages() -> List[DataEntry]:
@@ -17,12 +23,20 @@ def get_pages() -> List[DataEntry]:
     soup = BeautifulSoup(page.text, "html.parser")
     elements = soup.select(SELECTOR)
 
-    result: List[DataEntry] = []
+    threads: List[Thread] = []
+    queue = Queue()
 
     for element in elements:
         title = element.text
         url = "https://www.mp.se" + element["href"]
-        opinions = get_opinions(url)
-        result.append(DataEntry(title, url, opinions))
+        thread = Thread(
+            target=get_opinions_wrapper,
+            args=(queue, title, url),
+        )
+        thread.start()
+        threads.append(thread)
 
-    return result
+    for thread in threads:
+        thread.join()
+
+    return queue.get()

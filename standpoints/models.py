@@ -24,8 +24,8 @@ class Standpoint(models.Model):
 
     id = models.CharField(max_length=64, primary_key=True)
     link = models.CharField(max_length=100, verbose_name="Länk", unique=True)
-    title = models.CharField(max_length=50, verbose_name="Ståndpunkt", default="Titel")
-    content = ArrayField(models.CharField(max_length=200), verbose_name="Åsikt")
+    title = models.CharField(max_length=100, verbose_name="Ståndpunkt", default="Titel")
+    content = ArrayField(models.CharField(max_length=1000), verbose_name="Åsikt")
     date = models.DateField(verbose_name="datum", null=True, auto_now_add=True)
     party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name="Parti")
     subject = models.ForeignKey(
