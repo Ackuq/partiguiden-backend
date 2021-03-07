@@ -1,6 +1,7 @@
 import os
-from standpoints.serializer import SubjectSerializer
+
 from standpoints.models import Subject
+from standpoints.serializer import SubjectSerializer
 
 CATEGORY_VIEW_ID = os.environ.get("ANALYTICS_CATEGORY_VIEW_ID", "0")
 
