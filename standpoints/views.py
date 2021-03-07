@@ -10,7 +10,7 @@ from rest_framework.response import Response
 
 from .models import Party, Standpoint, Subject
 from .scripts.update_standpoints import update_standpoints
-from .serializer import PartySerializer, StandpointSerializer, SubjectSerializer
+from .serializer import PartySerializer, StandpointSerializer, SubjectListSerializer, SubjectSerializer
 
 
 class StandpointFilter(FilterSet):
@@ -50,4 +50,9 @@ class PartyView(viewsets.ModelViewSet):
 
 class SubjectView(viewsets.ModelViewSet):
     queryset = Subject.objects.all()
-    serializer_class = SubjectSerializer
+
+    def get_serializer_class(self):
+        if self.action == "list":
+            return SubjectListSerializer
+        else:
+            return SubjectSerializer
