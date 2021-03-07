@@ -12,8 +12,9 @@ def format_report(report):
     for row in report["data"]["rows"]:
         subject_id = row["dimensions"][0].replace("/standpoints/", "")
         value = row["metrics"][0]["values"][0]
-        if subject_id.isdigit():
+        if subject_id.isdigit() and value.isdigit():
             subject_id = int(subject_id, base=10)
+            value = int(value, 10)
             try:
                 subject = Subject.objects.get(pk=subject_id)
                 serialized = SubjectSerializer(subject)
