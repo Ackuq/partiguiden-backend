@@ -22,7 +22,7 @@ class SubjectListSerializer(serializers.ModelSerializer):
 
 
 class SubjectSerializer(serializers.ModelSerializer):
-    standpoints = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    standpoints = StandpointSerializer(many=True, read_only=True)
 
     class Meta:
         model = Subject
