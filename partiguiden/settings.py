@@ -30,6 +30,7 @@ ALLOWED_HOSTS = str(os.environ.get("DJANGO_ALLOWED_HOSTS")).split(" ")
 
 # Application definition
 
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "standpoints",
+    "analytics",
 ]
 
 REST_FRAMEWORK = {

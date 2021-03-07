@@ -127,3 +127,6 @@ dmypy.json
 # Environment
 .env*
 !.env.example
+
+# Analytics service account
+analytics-service-account.json

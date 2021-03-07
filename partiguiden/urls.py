@@ -10,5 +10,6 @@ urlpatterns = [
     path("refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("", include("standpoints.urls")),
+    path("analytics/", include("analytics.urls")),
     path("docs/", include_docs_urls(title="Partiguiden API docs")),
 ]
