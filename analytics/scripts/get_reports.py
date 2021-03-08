@@ -14,7 +14,7 @@ from google.analytics.data_v1alpha.types import (
 )
 
 from standpoints.models import Subject
-from standpoints.serializer import SubjectSerializer
+from standpoints.serializer import SubjectListSerializer
 
 ANALYTICS_PROPERTY = os.environ.get("ANALYTICS_PROPERTY", "0")
 
@@ -30,7 +30,7 @@ def format_popular(report: RunReportResponse):
             value = int(value, 10)
             try:
                 subject = Subject.objects.get(pk=subject_id)
-                serialized = SubjectSerializer(subject)
+                serialized = SubjectListSerializer(subject)
                 data.append((serialized.data, value))
             except Subject.DoesNotExist:
                 pass  # Don't do anything
