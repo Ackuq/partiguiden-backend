@@ -51,7 +51,7 @@ def get_reports(client: AlphaAnalyticsDataClient):
             )
         ),
         order_bys=[OrderBy(metric=OrderBy.MetricOrderBy(metric_name="screenPageViews"), desc=True)],
-        limit=4,
+        limit=10,
     )
 
     response = client.run_report(request)
