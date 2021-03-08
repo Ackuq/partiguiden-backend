@@ -1,6 +1,7 @@
 from proxy.scripts.members import get_member, get_members, search_member
 from proxy.scripts.document import get_html_document, get_json_document, get_member_documents
 from proxy.scripts.decisions import get_decisions
+from proxy.scripts.parties import get_party
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.request import Request
@@ -8,11 +9,16 @@ from rest_framework.request import Request
 
 # Create your views here.
 
+""" Decisions """
+
 
 class DecisionsView(APIView):
     def get(self, request: Request):
         decisions = get_decisions(request.query_params)
         return Response(decisions)
+
+
+""" Members """
 
 
 class MemberSearchView(APIView):
@@ -39,6 +45,9 @@ class MemberDocumentsView(APIView):
         return Response(decisions)
 
 
+""" Documents """
+
+
 class JSONDocumentView(APIView):
     def get(self, request: Request, id):
         decisions = get_json_document(id)
@@ -49,3 +58,12 @@ class HTMLDocumentView(APIView):
     def get(self, request: Request, id):
         decisions = get_html_document(id)
         return Response(decisions)
+
+
+""" Parties """
+
+
+class PartyView(APIView):
+    def get(self, request: Request, party: str):
+        party_data = get_party(party.lower())
+        return Response(party_data)

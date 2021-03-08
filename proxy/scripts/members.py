@@ -7,7 +7,7 @@ from proxy.scripts import BASE_URL
 import requests
 
 
-def fetch_absence(query: Dict, result_object):
+def fetch_absence(query: Dict, result_object=None):
     res = requests.get("{}/voteringlista/".format(BASE_URL), params=query)
     data = res.json()
     if result_object is not None:
@@ -16,7 +16,7 @@ def fetch_absence(query: Dict, result_object):
         return serialize_absence(data)
 
 
-def fetch_member(query: Dict, result_object):
+def fetch_member(query: Dict, result_object=None):
     res = requests.get("{}/personlista/".format(BASE_URL), params=query)
     data = res.json()
     member = data["personlista"].get("person")
@@ -31,10 +31,7 @@ def fetch_member(query: Dict, result_object):
             last_name_array.pop(0)
             new_query = query.copy()
             new_query["enamn"] = " ".join(last_name_array)
-            if result_object is not None:
-                fetch_member(new_query, result_object)
-            else:
-                return fetch_member(new_query, result_object)
+            return fetch_member(new_query, result_object)
 
 
 def search_member(query: QueryDict):
@@ -46,7 +43,7 @@ def search_member(query: QueryDict):
         "utformat": "json",
     }
 
-    return fetch_member(parliament_query, None)
+    return fetch_member(parliament_query)
 
 
 def get_member(id: str):

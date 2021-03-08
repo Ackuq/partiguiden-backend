@@ -46,7 +46,6 @@ def serializer_member(data: Dict):
     is_leader = False
 
     for task in tasks:
-        print(task)
         if task.get("role") == "Partiledare" and (task["to"] is None or task["to"] == ""):
             is_leader = True
             break

@@ -13,6 +13,7 @@ urlpatterns = [
     path("member/<slug:id>/", views.MemberView.as_view()),
     path("members/", views.MembersView.as_view()),
     path("member/", views.MemberSearchView.as_view()),
+    path("party/<str:party>", views.PartyView.as_view()),
 ]
 
 urlpatterns += router.urls
