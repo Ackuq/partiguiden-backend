@@ -5,3 +5,4 @@ exclude = "/*migrations/*/"
 [tool.isort]
 line_length = 120
 skip="migrations"
+profile="black"

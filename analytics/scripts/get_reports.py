@@ -1,17 +1,30 @@
 import os
 
+from google.analytics.data_v1alpha import AlphaAnalyticsDataClient
+from google.analytics.data_v1alpha.types import (
+    DateRange,
+    Dimension,
+    Entity,
+    Filter,
+    FilterExpression,
+    Metric,
+    OrderBy,
+    RunReportRequest,
+    RunReportResponse,
+)
+
 from standpoints.models import Subject
 from standpoints.serializer import SubjectSerializer
 
-CATEGORY_VIEW_ID = os.environ.get("ANALYTICS_CATEGORY_VIEW_ID", "0")
+ANALYTICS_PROPERTY = os.environ.get("ANALYTICS_PROPERTY", "0")
 
 
-def format_report(report):
+def format_report(report: RunReportResponse):
     data = []
 
-    for row in report["data"]["rows"]:
-        subject_id = row["dimensions"][0].replace("/standpoints/", "")
-        value = row["metrics"][0]["values"][0]
+    for row in report.rows:
+        subject_id = row.dimension_values[0].value.replace("/standpoints/", "")
+        value = row.metric_values[0].value
         if subject_id.isdigit() and value.isdigit():
             subject_id = int(subject_id, base=10)
             value = int(value, 10)
@@ -25,34 +38,23 @@ def format_report(report):
     return data
 
 
-def get_reports(analytics):
-    reports = (
-        analytics.reports()
-        .batchGet(
-            body={
-                "reportRequests": [
-                    {
-                        "viewId": CATEGORY_VIEW_ID,
-                        "dateRanges": [{"startDate": "30daysAgo", "endDate": "today"}],
-                        "metrics": [
-                            {"expression": "ga:pageviews"},
-                        ],
-                        "dimensions": [{"name": "ga:pagePath"}],
-                        "dimensionFilterClauses": [
-                            {
-                                "filters": [
-                                    {
-                                        "dimensionName": "ga:pagePath",
-                                        "operator": "REGEXP",
-                                        "expressions": ["standpoints/.+"],
-                                    }
-                                ]
-                            }
-                        ],
-                    }
-                ]
-            }
-        )
-        .execute()
+def get_reports(client: AlphaAnalyticsDataClient):
+    request = RunReportRequest(
+        entity=Entity(property_id=ANALYTICS_PROPERTY),
+        dimensions=[Dimension(name="pagePath")],
+        metrics=[Metric(name="screenPageViews")],
+        date_ranges=[DateRange(start_date="30daysAgo", end_date="today")],
+        dimension_filter=FilterExpression(
+            filter=Filter(
+                field_name="pagePath",
+                string_filter=Filter.StringFilter(match_type=Filter.StringFilter.MatchType(6), value="standpoints/.+"),
+            )
+        ),
+        order_bys=[OrderBy(metric=OrderBy.MetricOrderBy(metric_name="screenPageViews"), desc=True)],
+        limit=4,
     )
-    return format_report(reports["reports"][0])
+
+    response = client.run_report(request)
+    data = format_report(response)
+
+    return data
