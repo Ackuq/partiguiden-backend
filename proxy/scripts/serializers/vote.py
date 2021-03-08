@@ -1,6 +1,6 @@
+import re
 from functools import reduce
 from typing import Dict, List
-import re
 
 
 def extract_votes(row):

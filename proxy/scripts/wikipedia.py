@@ -1,7 +1,9 @@
-from proxy.scripts.serializers.wikipedia import serialize_abstact, serialize_info_box
-import requests
-from urllib.parse import quote
 from time import sleep
+from urllib.parse import quote
+
+import requests
+
+from proxy.scripts.serializers.wikipedia import serialize_abstact, serialize_info_box
 
 WIKIPEDIA_MAP = {
     "s": "Socialdemokraterna_(Sverige)",

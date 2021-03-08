@@ -1,8 +1,10 @@
-from typing import Dict, Optional
-from proxy.scripts.wikipedia import get_wikipedia_abstract, get_wikipedia_info_box
-import requests
-from proxy.scripts.serializers.parties import serialize_parliament_info
 from threading import Thread
+from typing import Dict, Optional
+
+import requests
+
+from proxy.scripts.serializers.parties import serialize_parliament_info
+from proxy.scripts.wikipedia import get_wikipedia_abstract, get_wikipedia_info_box
 
 PARTY_NAME_MAP = {
     "s": "Socialdemokraterna",

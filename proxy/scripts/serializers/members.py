@@ -1,5 +1,5 @@
-from typing import Dict, Iterable, Optional
 from datetime import date
+from typing import Dict, Iterable, Optional
 
 EXCLUDE_INFORMATION = [
     "sv",

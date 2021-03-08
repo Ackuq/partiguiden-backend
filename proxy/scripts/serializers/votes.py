@@ -1,8 +1,8 @@
-from proxy.scripts.vote import get_vote_result
-from threading import Thread
-
 import re
+from threading import Thread
 from typing import Dict, List
+
+from proxy.scripts.vote import get_vote_result
 
 
 def title_trim(title: str):

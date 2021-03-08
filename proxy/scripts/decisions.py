@@ -1,8 +1,10 @@
 from typing import Dict
-from proxy.scripts import BASE_URL
-from proxy.scripts.serializers.decisions import decisions_serializer
+
 import requests
 from django.http.request import QueryDict
+
+from proxy.scripts import BASE_URL
+from proxy.scripts.serializers.decisions import decisions_serializer
 
 
 def get_decisions(query: QueryDict):

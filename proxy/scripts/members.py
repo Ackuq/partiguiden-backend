@@ -1,10 +1,12 @@
 from threading import Thread
+from typing import Dict, List
+
+import requests
+from django.http.request import QueryDict
+
+from proxy.scripts import BASE_URL
 from proxy.scripts.serializers.absence import serialize_absence
 from proxy.scripts.serializers.members import serializer_member, serializer_members
-from typing import Dict, List
-from django.http.request import QueryDict
-from proxy.scripts import BASE_URL
-import requests
 
 
 def fetch_absence(query: Dict, result_object=None):

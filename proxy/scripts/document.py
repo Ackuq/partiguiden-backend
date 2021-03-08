@@ -1,7 +1,9 @@
-from django.http.request import QueryDict
-from proxy.scripts import BASE_URL
 from typing import Dict
+
 import requests
+from django.http.request import QueryDict
+
+from proxy.scripts import BASE_URL
 
 
 def get_html_document(id: str):

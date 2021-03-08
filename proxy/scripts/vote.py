@@ -1,6 +1,7 @@
-from proxy.scripts.serializers.vote import serialize_vote, serialize_vote_result
-from proxy.scripts import BASE_URL
 import requests
+
+from proxy.scripts import BASE_URL
+from proxy.scripts.serializers.vote import serialize_vote, serialize_vote_result
 
 
 def get_vote_result(id: str, num: int):

@@ -1,7 +1,9 @@
 from threading import Thread
-from proxy.scripts.members import fetch_member
 from typing import Dict, List, Tuple
+
 from bs4 import BeautifulSoup
+
+from proxy.scripts.members import fetch_member
 
 
 def serialize_parliament_info(html: str, party: str):

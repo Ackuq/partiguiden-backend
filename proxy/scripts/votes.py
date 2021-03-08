@@ -1,7 +1,8 @@
-from proxy.scripts.serializers.votes import serialize_votes
-from proxy.scripts import BASE_URL
 import requests
 from django.http.request import QueryDict
+
+from proxy.scripts import BASE_URL
+from proxy.scripts.serializers.votes import serialize_votes
 
 
 def get_votes(query: QueryDict):

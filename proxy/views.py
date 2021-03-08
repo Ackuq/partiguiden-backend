@@ -1,13 +1,13 @@
-from proxy.scripts.members import get_member, get_members, search_member
-from proxy.scripts.document import get_html_document, get_json_document, get_member_documents
-from proxy.scripts.decisions import get_decisions
-from proxy.scripts.votes import get_votes
-from proxy.scripts.vote import get_vote
-from proxy.scripts.parties import get_party
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.request import Request
 
+from proxy.scripts.decisions import get_decisions
+from proxy.scripts.document import get_html_document, get_json_document, get_member_documents
+from proxy.scripts.members import get_member, get_members, search_member
+from proxy.scripts.parties import get_party
+from proxy.scripts.vote import get_vote
+from proxy.scripts.votes import get_votes
 
 # Create your views here.
 
