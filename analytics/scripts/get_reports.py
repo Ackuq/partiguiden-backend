@@ -19,7 +19,7 @@ from standpoints.serializer import SubjectSerializer
 ANALYTICS_PROPERTY = os.environ.get("ANALYTICS_PROPERTY", "0")
 
 
-def format_report(report: RunReportResponse):
+def format_popular(report: RunReportResponse):
     data = []
 
     for row in report.rows:
@@ -38,7 +38,7 @@ def format_report(report: RunReportResponse):
     return data
 
 
-def get_reports(client: AlphaAnalyticsDataClient):
+def get_popular_standpoints(client: AlphaAnalyticsDataClient):
     request = RunReportRequest(
         entity=Entity(property_id=ANALYTICS_PROPERTY),
         dimensions=[Dimension(name="pagePath")],
@@ -55,6 +55,6 @@ def get_reports(client: AlphaAnalyticsDataClient):
     )
 
     response = client.run_report(request)
-    data = format_report(response)
+    data = format_popular(response)
 
     return data
