@@ -14,6 +14,7 @@ urlpatterns = [
     path("members/", views.MembersView.as_view()),
     path("member/", views.MemberSearchView.as_view()),
     path("party/<str:party>", views.PartyView.as_view()),
+    path("votes/", views.VotesView.as_view()),
 ]
 
 urlpatterns += router.urls

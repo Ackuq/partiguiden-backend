@@ -1,6 +1,7 @@
 from proxy.scripts.members import get_member, get_members, search_member
 from proxy.scripts.document import get_html_document, get_json_document, get_member_documents
 from proxy.scripts.decisions import get_decisions
+from proxy.scripts.votes import get_votes
 from proxy.scripts.parties import get_party
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -67,3 +68,12 @@ class PartyView(APIView):
     def get(self, request: Request, party: str):
         party_data = get_party(party.lower())
         return Response(party_data)
+
+
+""" Votes """
+
+
+class VotesView(APIView):
+    def get(self, request: Request):
+        votes = get_votes(request.query_params)
+        return Response(votes)
