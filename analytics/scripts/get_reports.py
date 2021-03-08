@@ -1,8 +1,17 @@
 import os
 
 from google.analytics.data_v1alpha import AlphaAnalyticsDataClient
-from google.analytics.data_v1alpha.types import (DateRange, Dimension, Entity, Filter, FilterExpression, Metric,
-                                                 OrderBy, RunReportRequest, RunReportResponse)
+from google.analytics.data_v1alpha.types import (
+    DateRange,
+    Dimension,
+    Entity,
+    Filter,
+    FilterExpression,
+    Metric,
+    OrderBy,
+    RunReportRequest,
+    RunReportResponse,
+)
 
 from standpoints.models import Subject
 from standpoints.serializer import SubjectSerializer
