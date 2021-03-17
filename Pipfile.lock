@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bc0eb630d675c082d759589ec46f7a0690e25ba67602b56fad0bf3c366839a3c"
+            "sha256": "1127ac758a22f45871b0c0330bd17668acaa2e225546b742d21bde015a0773e8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -125,11 +125,11 @@
         },
         "google-analytics-data": {
             "hashes": [
-                "sha256:6563c8bd3219c961a9f58d950bbff1fdbe9eec77d602dcdd3ba667654dd537f0",
-                "sha256:b23b61af1aea43f66381eb65e037e3c0ca0d04bf3c0f2d36c8adc6cfe5338994"
+                "sha256:3e38cb8f6216a5c5a3cd984b2a242ba790cbc013b9cec2de4514acfeeb5323c7",
+                "sha256:45ad1899a1db93fbb420909a6adc7e1548163f9e4f962225a2df5edf04c6cdbc"
             ],
             "index": "pypi",
-            "version": "==0.4.0"
+            "version": "==0.4.1"
         },
         "google-api-core": {
             "extras": [
@@ -143,10 +143,10 @@
         },
         "google-auth": {
             "hashes": [
-                "sha256:63a5636d7eacfe6ef5b7e36e112b3149fa1c5b5ad77dd6df54910459bcd6b89f",
-                "sha256:d8958af6968e4ecd599f82357ebcfeb126f826ed0656126ad68416f810f7531e"
+                "sha256:9bd436d19ab047001a1340720d2b629eb96dd503258c524921ec2af3ee88a80e",
+                "sha256:dcaba3aa9d4e0e96fd945bf25a86b6f878fcb05770b67adbeb50a63ca4d28a5e"
             ],
-            "version": "==1.27.1"
+            "version": "==1.28.0"
         },
         "googleapis-common-protos": {
             "hashes": [
@@ -297,10 +297,10 @@
         },
         "proto-plus": {
             "hashes": [
-                "sha256:72283578d6f72801049329652dfbfd7f14f3a0658afcf3adca5ab7609abefcbc",
-                "sha256:ebced9a550a4236ec652a4988bf68e5c7da613b001165405975dd548c844e5cd"
+                "sha256:18f43cdeb66e326e4392a0f20662f3e826f0a35489780510a9d3dc1d8135ce30",
+                "sha256:bae25ef9e7d4290802d56ec81faba0a7cfe58843276eb15b320677b5b8b3f63d"
             ],
-            "version": "==1.17.0"
+            "version": "==1.18.0"
         },
         "protobuf": {
             "hashes": [
@@ -525,10 +525,10 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:1b465e494e3e0d8939b50680403e3aedaa2bc434b7d5af64dfd3c958d7f5ae80",
-                "sha256:de3eedaad74a2683334e282005cd8d7f22f4d55fa690a2a1020a416cb0a47e73"
+                "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df",
+                "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"
             ],
-            "version": "==1.26.3"
+            "version": "==1.26.4"
         },
         "whitenoise": {
             "hashes": [
