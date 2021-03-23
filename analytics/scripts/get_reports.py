@@ -41,12 +41,12 @@ def format_popular(report: RunReportResponse):
 def get_popular_standpoints(client: AlphaAnalyticsDataClient):
     request = RunReportRequest(
         entity=Entity(property_id=ANALYTICS_PROPERTY),
-        dimensions=[Dimension(name="pagePath")],
+        dimensions=[Dimension(name="pagePathPlusQueryString")],
         metrics=[Metric(name="screenPageViews")],
         date_ranges=[DateRange(start_date="30daysAgo", end_date="today")],
         dimension_filter=FilterExpression(
             filter=Filter(
-                field_name="pagePath",
+                field_name="pagePathPlusQueryString",
                 string_filter=Filter.StringFilter(match_type=Filter.StringFilter.MatchType(6), value="standpoints/.+"),
             )
         ),
