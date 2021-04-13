@@ -23,7 +23,7 @@ class Standpoint(models.Model):
         return f"{self.title} - {self.party}"
 
     id = models.CharField(max_length=64, primary_key=True)
-    link = models.CharField(max_length=100, verbose_name="Länk", unique=True)
+    link = models.CharField(max_length=150, verbose_name="Länk", unique=True)
     title = models.CharField(max_length=100, verbose_name="Ståndpunkt", default="Titel")
     content = ArrayField(models.CharField(max_length=1000), verbose_name="Åsikt")
     date = models.DateField(verbose_name="datum", null=True, auto_now_add=True)
