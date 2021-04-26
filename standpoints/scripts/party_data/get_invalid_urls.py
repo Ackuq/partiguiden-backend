@@ -4,7 +4,9 @@ import requests
 
 
 def get_invalid_urls(standpoints: List[Tuple[str, str]]) -> List[str]:
-    """ Takes a list of tuples of the form (id, url) and outputs a list of standpoints with invalid urls """
+    """
+    Takes a list of tuples of the form (id, url) and outputs a list of standpoints with invalid urls
+    """
     invalid: List[str] = []
     for (id, url) in standpoints:
         try:

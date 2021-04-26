@@ -2,7 +2,9 @@ from typing import List
 
 
 class DataEntry:
-    """ Contains data fetched from website """
+    """
+    Contains data fetched from website
+    """
 
     def __init__(self, title: str, url: str, opinions: List[str]) -> None:
         self.title = title
