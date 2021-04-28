@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "~=3.9.1"
-black = "~=21.4b0"
+black = "~=21.4b1"
 isort = "~=5.8.0"
 mypy = "~=0.812"
 
