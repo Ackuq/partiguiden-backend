@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a569c103011c693e153d5add6fd96e3cafa0d3b15aac1fdd349851419e5c6d17"
+            "sha256": "fd2b6ee41d411654db6c15d122398247d78234a24c6627406dcbb492271c4f23"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -117,11 +117,11 @@
         },
         "djangorestframework-simplejwt": {
             "hashes": [
-                "sha256:14473248c408e29290bde3b76df32ebbaeaaa096d8b2c3a77778e9e8f7d73d2c",
-                "sha256:9872a0fca6c7ae74a162254c4e5d9c998f8e8800b9bf2ad507087e98ef283a39"
+                "sha256:3242f35aaab0db6e2a5636a0ccfc49ff06943809ec063d1356253d1bf28b80a3",
+                "sha256:c0e9b617da337becb55e67935eb992fad84f861418e7ab5fb3e77a3fd18d4137"
             ],
             "index": "pypi",
-            "version": "==4.7.0"
+            "version": "==4.7.1"
         },
         "google-analytics-data": {
             "hashes": [
@@ -143,10 +143,10 @@
         },
         "google-auth": {
             "hashes": [
-                "sha256:588bdb03a41ecb4978472b847881e5518b5d9ec6153d3d679aa127a55e13b39f",
-                "sha256:9ad25fba07f46a628ad4d0ca09f38dcb262830df2ac95b217f9b0129c9e42206"
+                "sha256:044d81b1e58012f8ebc71cc134e191c1fa312f543f1fbc99973afe28c25e3228",
+                "sha256:b3ca7a8ff9ab3bdefee3ad5aefb11fc6485423767eee016f5942d8e606ca23fb"
             ],
-            "version": "==1.30.0"
+            "version": "==1.30.1"
         },
         "googleapis-common-protos": {
             "hashes": [
@@ -530,10 +530,10 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df",
-                "sha256:e7b021f7241115872f92f43c6508082facffbd1c048e3c6e2bb9c2a157e28937"
+                "sha256:753a0374df26658f99d826cfe40394a686d05985786d946fbe4165b5148f5a7c",
+                "sha256:a7acd0977125325f516bda9735fa7142b909a8d01e8b2e4c8108d0984e6e0098"
             ],
-            "version": "==1.26.4"
+            "version": "==1.26.5"
         },
         "whitenoise": {
             "hashes": [
