@@ -8,6 +8,7 @@ flake8 = "~=3.9.2"
 black = "~=21.5b2"
 isort = "~=5.8.0"
 mypy = "~=0.901"
+types-requests = "*"
 
 [packages]
 django = "~=3.2"
