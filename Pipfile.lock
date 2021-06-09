@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "04048a34fe4f3a817557a528fa3773690174eb3b4f210fe524e40abbe235a882"
+            "sha256": "762889b315fa44f6b68c9ead7c0384923bfe69b521d82bd6e04c1e47d98dd845"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -125,28 +125,28 @@
         },
         "google-analytics-data": {
             "hashes": [
-                "sha256:4c47e6984bf0656eb526c77ec9b8c6b69b00316907c45144c48930ec93b4a4e6",
-                "sha256:da06f6a698c6aa50867808f5780f41b6ed0a09e1bd6dd80c39d1605b6642871e"
+                "sha256:246ce09201cb89b4a2c313781e92090d36f01a2a11211741ae63edb253ef9ffc",
+                "sha256:9323b6f2e10be2970dbfc42d935fa7f4bb2801dfc595d5bc0123cd8100671a82"
             ],
             "index": "pypi",
-            "version": "==0.5.1"
+            "version": "==0.6.0"
         },
         "google-api-core": {
             "extras": [
                 "grpc"
             ],
             "hashes": [
-                "sha256:02646803bd728e12dd1f45ee1dcc31c12614c9a1ac451b9a1ce26aa65df9b957",
-                "sha256:a658a4e367511a444c7daf2c58855ff6fd7f7d138c154e5b17186c1f8154c8cb"
+                "sha256:0724d354d394b3d763bc10dfee05807813c5210f0bd9b8e2ddf6b6925603411c",
+                "sha256:92cd9e9f366e84bfcf2524e34d2dc244906c645e731962617ba620da1620a1e0"
             ],
-            "version": "==1.28.0"
+            "version": "==1.30.0"
         },
         "google-auth": {
             "hashes": [
-                "sha256:044d81b1e58012f8ebc71cc134e191c1fa312f543f1fbc99973afe28c25e3228",
-                "sha256:b3ca7a8ff9ab3bdefee3ad5aefb11fc6485423767eee016f5942d8e606ca23fb"
+                "sha256:9b235dbc876e49454cbedc52ae0abd540ef705ebccdf4fbe93553bb13f26b1a4",
+                "sha256:eb017521276a75492282c6ca4b718f26de112ed3bcbeaeeb02c1b82de425f909"
             ],
-            "version": "==1.30.1"
+            "version": "==1.30.2"
         },
         "googleapis-common-protos": {
             "hashes": [
@@ -515,11 +515,11 @@
         },
         "typing-inspect": {
             "hashes": [
-                "sha256:3b98390df4d999a28cf5b35d8b333425af5da2ece8a4ea9e98f71e7591347b4f",
-                "sha256:8f1b1dd25908dbfd81d3bebc218011531e7ab614ba6e5bf7826d887c834afab7",
-                "sha256:de08f50a22955ddec353876df7b2545994d6df08a2f45d54ac8c05e530372ca0"
+                "sha256:047d4097d9b17f46531bf6f014356111a1b6fb821a24fe7ac909853ca2a782aa",
+                "sha256:3cd7d4563e997719a710a3bfe7ffb544c6b72069b6812a02e9b414a8fa3aaa6b",
+                "sha256:b1f56c0783ef0f25fb064a01be6e5407e54cf4a4bf4f3ba3fe51e0bd6dcea9e5"
             ],
-            "version": "==0.6.0"
+            "version": "==0.7.1"
         },
         "uritemplate": {
             "hashes": [
