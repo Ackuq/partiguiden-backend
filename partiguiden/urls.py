@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework.documentation import include_docs_urls
+from django.views.generic.base import TemplateView
+from rest_framework.schemas import get_schema_view
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 urlpatterns = [
@@ -12,5 +13,11 @@ urlpatterns = [
     path("", include("standpoints.urls")),
     path("analytics/", include("analytics.urls")),
     path("proxy/", include("proxy.urls")),
-    path("docs/", include_docs_urls(title="Partiguiden API docs")),
+    path(
+        "swagger-ui/",
+        TemplateView.as_view(template_name="swagger-ui.html", extra_context={"schema_url": "openapi-schema"}),
+        name="swagger-ui",
+    ),
+    path("openapi/", get_schema_view(title="Partiguiden API", version="1.0.0"), name="openapi-schema"),
+    # path("docs/", include_docs_urls(title="Partiguiden API docs")),
 ]

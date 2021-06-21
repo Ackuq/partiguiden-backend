@@ -56,7 +56,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.openapi.AutoSchema",
 }
 
 MIDDLEWARE = [
@@ -69,6 +69,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 
 if "SENTRY_DSN" in os.environ:
     import sentry_sdk
@@ -91,7 +94,7 @@ ROOT_URLCONF = "partiguiden.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["partiguiden/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
