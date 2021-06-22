@@ -3,7 +3,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-OPINION_TAG = "h2:-soup-contains('Vår politik') + ul li"
+OPINION_TAG = ".ftdcontent-content .wysiwyg-content ul li"
 
 
 def get_opinions(url: str) -> List[str]:
