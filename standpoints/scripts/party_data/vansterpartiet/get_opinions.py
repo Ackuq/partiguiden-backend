@@ -15,7 +15,10 @@ def get_opinions(url: str) -> List[str]:
     opinions = soup.select(OPINION_TAG)
 
     if len(opinions) == 0:
-        secondary = soup.select(SECONDARY_TAG).pop(0)
-        return [secondary.text.strip()]
+        secondary = soup.select(SECONDARY_TAG)
+        if len(secondary) != 0:
+            return [secondary.pop(0).text.strip()]
+        else:
+            return []
 
     return list(map(lambda el: el.text.strip(), opinions))

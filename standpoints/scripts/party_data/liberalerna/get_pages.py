@@ -9,7 +9,7 @@ from .get_opinions import get_opinions
 
 URL = "https://www.liberalerna.se/politik-a-o/"
 
-SELECTOR = ".politikIndex-list-group a"
+SELECTOR = ".politicsIdx-list-group a"
 
 
 def get_opinions_wrapper(queue: Queue, title: str, url: str):

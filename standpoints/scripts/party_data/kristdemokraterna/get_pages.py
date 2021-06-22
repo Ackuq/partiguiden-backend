@@ -1,3 +1,4 @@
+import urllib.parse
 from typing import List
 
 import requests
@@ -19,7 +20,7 @@ def get_pages() -> List[DataEntry]:
     result: List[DataEntry] = []
 
     for paragraph in paragraphs:
-        title = paragraph.text
+        title: str = paragraph.text
 
         url = URL
 
@@ -27,6 +28,7 @@ def get_pages() -> List[DataEntry]:
         opinions = list(filter(len, opinions_text.splitlines()))  # If multiple lines, split and remove empty lines
 
         if title != "":
-            result.append(DataEntry(title, url, opinions))
+            unique_url = url + "#" + urllib.parse.quote(title.lower())
+            result.append(DataEntry(title, unique_url, opinions))
 
     return result

@@ -1,3 +1,18 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from .models import Party, Standpoint, Subject
+
+
+@admin.register(Standpoint)
+class StandpointAdmin(admin.ModelAdmin):
+    list_filter = ["party"]
+
+
+@admin.register(Party)
+class PartyAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Subject)
+class SubjectAdmin(admin.ModelAdmin):
+    pass
