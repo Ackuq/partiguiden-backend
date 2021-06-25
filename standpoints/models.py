@@ -9,6 +9,9 @@ class Party(models.Model):
     id = models.CharField(max_length=10, verbose_name="Partiförkortning", primary_key=True)
     name = models.CharField(max_length=50, verbose_name="Partinamn", unique=True)
 
+    class Meta:
+        ordering = ["name"]
+
 
 class Subject(models.Model):
     def __str__(self):
@@ -16,6 +19,9 @@ class Subject(models.Model):
 
     name = models.CharField(max_length=50, verbose_name="Sakområde", unique=True)
     related_subject = models.ManyToManyField("self", verbose_name="Relaterade sakområden", blank=True)
+
+    class Meta:
+        ordering = ["name"]
 
 
 class Standpoint(models.Model):
@@ -31,3 +37,6 @@ class Standpoint(models.Model):
     subject = models.ForeignKey(
         Subject, on_delete=models.SET_NULL, verbose_name="Sakområde", null=True, blank=True, related_name="standpoints"
     )
+
+    class Meta:
+        ordering = ["party", "title"]

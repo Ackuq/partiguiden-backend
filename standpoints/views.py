@@ -3,7 +3,6 @@ from threading import Thread
 from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
 from django_filters.filters import BooleanFilter, CharFilter
 from django_filters.filterset import FilterSet
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
@@ -27,9 +26,6 @@ class StandpointFilter(FilterSet):
 class StandpointView(viewsets.ModelViewSet):
     queryset = Standpoint.objects.all()
     serializer_class = StandpointSerializer
-    filter_backends = [DjangoFilterBackend, OrderingFilter]
-    ordering_fields = ["id", "title"]
-    ordering = ["title"]
     filterset_class = StandpointFilter
 
     @action(detail=False, permission_classes=[IsAdminUser])
@@ -51,16 +47,11 @@ class StandpointView(viewsets.ModelViewSet):
 class PartyView(viewsets.ModelViewSet):
     queryset = Party.objects.all()
     serializer_class = PartySerializer
-    filter_backends = [OrderingFilter]
-    ordering_fields = ["id", "name"]
-    ordering = ["name"]
 
 
 class SubjectView(viewsets.ModelViewSet):
     queryset = Subject.objects.all()
     filter_backends = [OrderingFilter]
-    ordering_fields = ["id", "name"]
-    ordering = ["name"]
 
     def get_serializer_class(self):
         if self.action == "list":
