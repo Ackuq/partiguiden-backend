@@ -29,5 +29,5 @@ class Standpoint(models.Model):
     date = models.DateField(verbose_name="datum", null=True, auto_now_add=True)
     party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name="Parti")
     subject = models.ForeignKey(
-        Subject, on_delete=models.CASCADE, verbose_name="Sakområde", null=True, blank=True, related_name="standpoints"
+        Subject, on_delete=models.SET_NULL, verbose_name="Sakområde", null=True, blank=True, related_name="standpoints"
     )
