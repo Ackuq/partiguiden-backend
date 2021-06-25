@@ -21,8 +21,15 @@ class SubjectListSerializer(serializers.ModelSerializer):
         fields = ("id", "name")
 
 
+class RelatedSubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subject
+        fields = ("id", "name")
+
+
 class SubjectSerializer(serializers.ModelSerializer):
     standpoints = StandpointSerializer(many=True, read_only=True)
+    related_subject = RelatedSubjectSerializer(many=True)
 
     class Meta:
         model = Subject
