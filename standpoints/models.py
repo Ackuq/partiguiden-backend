@@ -20,7 +20,7 @@ class Subject(models.Model):
         return self.name
 
     name = models.CharField(max_length=50, verbose_name="Sakområde", unique=True, db_collation=DB_COLLATION)
-    related_subject = models.ManyToManyField("self", verbose_name="Relaterade sakområden", blank=True)
+    related_subjects = models.ManyToManyField("self", verbose_name="Relaterade sakområden", blank=True)
 
     class Meta:
         ordering = ["name"]

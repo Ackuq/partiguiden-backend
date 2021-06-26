@@ -130,3 +130,6 @@ dmypy.json
 
 # Analytics service account
 analytics-service-account.json
+
+# Postgres data
+.postgres-data
