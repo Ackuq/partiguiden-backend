@@ -18,7 +18,7 @@ class PartySerializer(serializers.HyperlinkedModelSerializer):
 class SubjectListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
-        fields = ("id", "name")
+        fields = ("id", "name", "related_subjects")
 
 
 class RelatedSubjectIdsField(serializers.PrimaryKeyRelatedField):
