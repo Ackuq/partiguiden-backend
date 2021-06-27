@@ -3,8 +3,8 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-OPINION_TAG = "p:-soup-contains('vill') + ul"
-SECONDARY_TAG = "p:-soup-contains('anser') + ul"
+OPINION_TAG = "p:-soup-contains('vill') + ul > li"
+SECONDARY_TAG = "p:-soup-contains('anser') + ul > li"
 
 
 def get_opinions(url: str) -> List[str]:

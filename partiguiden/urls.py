@@ -19,5 +19,4 @@ urlpatterns = [
         name="swagger-ui",
     ),
     path("openapi/", get_schema_view(title="Partiguiden API", version="1.0.0"), name="openapi-schema"),
-    # path("docs/", include_docs_urls(title="Partiguiden API docs")),
 ]
