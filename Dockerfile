@@ -1,4 +1,4 @@
-FROM python:3.9.5
+FROM python:3.10.0b3
 
 # Get pipenv
 RUN pip install pipenv
