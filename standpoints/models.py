@@ -22,6 +22,9 @@ class Subject(models.Model):
     name = models.CharField(max_length=50, verbose_name="Sakområde", unique=True, db_collation=DB_COLLATION)
     related_subjects = models.ManyToManyField("self", verbose_name="Relaterade sakområden", blank=True)
 
+    # Related fields:
+    #   standpoints (many2one)
+
     class Meta:
         ordering = ["name"]
 
