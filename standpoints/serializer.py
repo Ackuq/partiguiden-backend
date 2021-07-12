@@ -3,14 +3,6 @@ from rest_framework import serializers
 from .models import Party, Standpoint, Subject
 
 
-class StandpointSearchSerializer(serializers.ModelSerializer):
-    """Serializer when searching standpoints"""
-
-    class Meta:
-        model = Standpoint
-        fields = ("id", "title", "subject")
-
-
 class StandpointSerializer(serializers.ModelSerializer):
     """Serializer for standpoints"""
 
