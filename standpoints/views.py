@@ -3,15 +3,22 @@ from threading import Thread
 from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
 from django_filters.filters import BooleanFilter, CharFilter
 from django_filters.filterset import FilterSet
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
 from .models import Party, Standpoint, Subject
 from .scripts.update_standpoints import update_standpoints
-from .serializer import PartySerializer, StandpointSerializer, SubjectListSerializer, SubjectSerializer
+from .serializer import (
+    PartySerializer,
+    StandpointSearchSerializer,
+    StandpointSerializer,
+    SubjectListSerializer,
+    SubjectSerializer,
+)
 
 
 class StandpointFilter(FilterSet):
@@ -26,7 +33,14 @@ class StandpointFilter(FilterSet):
 class StandpointView(viewsets.ModelViewSet):
     queryset = Standpoint.objects.all()
     serializer_class = StandpointSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = StandpointFilter
+    search_fields = ["title"]
+
+    def get_serializer_class(self):
+        if self.action == "list" and "search" in self.request.query_params:
+            return StandpointSearchSerializer
+        return StandpointSerializer
 
     @action(detail=False, permission_classes=[IsAdminUser])
     def update_standpoints(self, request):
@@ -51,7 +65,8 @@ class PartyView(viewsets.ModelViewSet):
 
 class SubjectView(viewsets.ModelViewSet):
     queryset = Subject.objects.all()
-    filter_backends = [OrderingFilter]
+    filter_backends = [OrderingFilter, SearchFilter]
+    search_fields = ["name"]
 
     def get_serializer_class(self):
         if self.action == "list":
