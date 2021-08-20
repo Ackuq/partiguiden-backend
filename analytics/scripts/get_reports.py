@@ -1,10 +1,9 @@
 import os
 
-from google.analytics.data_v1alpha import AlphaAnalyticsDataClient
-from google.analytics.data_v1alpha.types import (
+from google.analytics.data_v1beta import BetaAnalyticsDataClient
+from google.analytics.data_v1beta.types import (
     DateRange,
     Dimension,
-    Entity,
     Filter,
     FilterExpression,
     Metric,
@@ -38,9 +37,9 @@ def format_popular(report: RunReportResponse):
     return data
 
 
-def get_popular_standpoints(client: AlphaAnalyticsDataClient):
+def get_popular_standpoints(client: BetaAnalyticsDataClient):
     request = RunReportRequest(
-        entity=Entity(property_id=ANALYTICS_PROPERTY),
+        property="properties/{}".format(ANALYTICS_PROPERTY),
         dimensions=[Dimension(name="pagePathPlusQueryString")],
         metrics=[Metric(name="screenPageViews")],
         date_ranges=[DateRange(start_date="30daysAgo", end_date="today")],
