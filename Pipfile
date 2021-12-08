@@ -11,7 +11,7 @@ mypy = "~=0.910"
 types-requests = "~=2.26.1"
 
 [packages]
-django = "~=3.2"
+django = "~=4.0"
 psycopg2-binary = "~=2.9.2"
 djangorestframework = "~=3.12.4"
 django-filter = "~=21.1"
