@@ -7,7 +7,7 @@ verify_ssl = true
 flake8 = "~=4.0.1"
 black = "~=21.12b0"
 isort = "~=5.10.1"
-mypy = "~=0.920"
+mypy = "~=0.921"
 types-requests = "~=2.26.2"
 
 [packages]
