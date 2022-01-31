@@ -16,7 +16,7 @@ def serialize_info_box(data):
 
     for header in headers:
         text: str = header.text
-        text = text.replace(u"\xa0", " ")
+        text = text.replace("\xa0", " ")
         if text == "Politisk ideologi":
             parent = header.next_sibling
             if parent is not None:
