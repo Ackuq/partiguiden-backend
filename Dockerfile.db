@@ -1,4 +1,4 @@
 # Postgresql with locale support
-FROM postgres:14.1
+FROM postgres:14.2
 RUN localedef -i sv_SE -c -f UTF-8 -A /usr/share/locale/locale.alias sv_SE.UTF-8
 
