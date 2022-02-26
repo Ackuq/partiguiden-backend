@@ -1,3 +1,4 @@
+from argparse import ArgumentParser, BooleanOptionalAction
 from typing import List
 
 from .centerpartiet.get_pages import get_pages as get_pages_c
@@ -31,3 +32,34 @@ def get_party_data(abbreviation: str) -> List[DataEntry]:
         return get_pages_v()
     else:
         return []
+
+
+def test(party_abbrev: str, preview: bool):
+    all_data = get_party_data(party_abbrev)
+    print("Number of entries: {}".format(len(all_data)))
+    print("Number of entries without content: {}".format(len([d for d in all_data if len(d.opinions) == 0])))
+    for data in all_data:
+        if len(data.title) > 100:
+            print("INVALID TITLE")
+            print(data.title)
+        if len(data.url) > 150:
+            print("INVALID URL")
+            print(data.url)
+        if len(data.opinions) == 0:
+            print("No content for {} at {}".format(data.title, data.url))
+    if preview:
+        for d in all_data:
+            print(d.title)
+            print(d.opinions)
+            print("--------------")
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser("test_party_data", description="Test party data extraction")
+
+    parser.add_argument("--party", "-p", required=True, type=str, help="The party to extract data from")
+    parser.add_argument("--preview", "-s", action=BooleanOptionalAction, type=bool, help="Preview the data")
+
+    args = parser.parse_args()
+
+    test(args.party, args.preview)

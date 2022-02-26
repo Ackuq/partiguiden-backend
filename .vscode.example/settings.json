@@ -1,12 +1,12 @@
 {
-  "python.pythonPath": "/usr/local/bin/python3",
-
   "editor.formatOnSave": true,
   "files.trimTrailingWhitespace": true,
-
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.flake8Args": ["--config=.config/flake8.cfg"],
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--config=.config/black.cfg"]
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  }
 }

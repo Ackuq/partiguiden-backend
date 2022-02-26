@@ -11,7 +11,7 @@ def __purge_old(party) -> None:
     standpoints = Standpoint.objects.filter(party=party).values_list("id", "link")
     invalid_ids: List[str] = get_invalid_urls(list(standpoints))
     for invalid_id in invalid_ids:
-        Standpoint.objects.get(pk=invalid_id).delete()
+        Standpoint.objects.filter(pk=invalid_id).delete()
 
 
 def __handle_standpoints_update(party_id: str) -> None:

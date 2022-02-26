@@ -1,4 +1,4 @@
-FROM python:3.10.2
+FROM python:3.9.9
 
 # Get pipenv
 RUN pip install pipenv
@@ -10,4 +10,4 @@ WORKDIR /usr/src/partiguiden-backend
 # Copy application code
 COPY . /usr/src/partiguiden-backend
 
-RUN pipenv install
+RUN pipenv install --dev

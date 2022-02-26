@@ -9,7 +9,7 @@ from .get_opinions import get_opinions
 
 URL = "https://moderaterna.se/var-politik"
 
-SELECTOR = "li.o-our-politics__topics__topic a"
+SELECTOR = ".search-subjects__content--search__form--list__subjects ul li a"
 
 
 def get_opinions_wrapper(queue: Queue, title: str, url: str):
@@ -28,7 +28,13 @@ def get_pages() -> List[DataEntry]:
 
     for element in elements:
         title = element.text
-        url = "https://www.moderaterna.se" + element["href"]
+        if title == "A-kassa":
+            # Theres some problem with this url, skip it for now
+            # TODO: Fix this when the website is fixed
+            continue
+        url = element["href"]
+        if url == "":
+            continue
         thread = Thread(
             target=get_opinions_wrapper,
             args=(queue, title, url),
