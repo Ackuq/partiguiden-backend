@@ -12,7 +12,7 @@ def get_invalid_urls(standpoints: List[Tuple[str, str]]) -> List[str]:
         try:
             res = requests.get(url, timeout=10)
             if not res.ok:
-                invalid += id
+                invalid.append(id)
         except TimeoutError:
-            invalid += id
+            invalid.append(id)
     return invalid

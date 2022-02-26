@@ -7,16 +7,17 @@ from .party_data.get_invalid_urls import get_invalid_urls
 from .party_data.get_party_data import get_party_data
 
 
-def __purge_old(party) -> None:
+def _purge_old(party) -> None:
     standpoints = Standpoint.objects.filter(party=party).values_list("id", "link")
     invalid_ids: List[str] = get_invalid_urls(list(standpoints))
+    print("Found invalid ids: {}".format(invalid_ids))
     for invalid_id in invalid_ids:
         Standpoint.objects.filter(pk=invalid_id).delete()
 
 
-def __handle_standpoints_update(party_id: str) -> None:
+def _handle_standpoints_update(party_id: str) -> None:
     party = Party.objects.get(pk=party_id.upper())
-    __purge_old(party)
+    _purge_old(party)
     pages = get_party_data(party_id)
 
     for page in pages:
@@ -41,6 +42,6 @@ def update_standpoints(party_id: str) -> None:
     if party_id.lower() == "all":
         all_ids = list(Party.objects.values_list("id", flat=True))
         for id in all_ids:
-            __handle_standpoints_update(id)
+            _handle_standpoints_update(id)
     else:
-        __handle_standpoints_update(party_id)
+        _handle_standpoints_update(party_id)
