@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "~=4.0.1"
-black = "~=22.1"
+black = "~=22.3"
 isort = "~=5.10.1"
 mypy = "~=0.942"
 types-requests = "~=2.27.15"
