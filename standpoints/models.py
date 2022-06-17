@@ -37,7 +37,8 @@ class Standpoint(models.Model):
     link = models.CharField(max_length=150, verbose_name="Länk", unique=True)
     title = models.CharField(max_length=100, verbose_name="Ståndpunkt", default="Titel", db_collation=DB_COLLATION)
     content = ArrayField(models.CharField(max_length=1000), verbose_name="Åsikt")
-    date = models.DateField(verbose_name="datum", null=True, auto_now_add=True)
+    # Update date of the content
+    date = models.DateField(verbose_name="datum", null=False, auto_now_add=True)
     party = models.ForeignKey(Party, on_delete=models.CASCADE, verbose_name="Parti")
     subject = models.ForeignKey(
         Subject, on_delete=models.SET_NULL, verbose_name="Sakområde", null=True, blank=True, related_name="standpoints"
