@@ -3,7 +3,7 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 
-OPINION_TAG = ".ftdcontent-content .wysiwyg-content ul li"
+OPINION_TAG = ".spolitik-content.container > .wysiwyg-content p"
 
 
 def get_opinions(url: str) -> List[str]:

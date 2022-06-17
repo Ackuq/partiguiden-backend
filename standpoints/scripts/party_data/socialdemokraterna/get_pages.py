@@ -7,9 +7,11 @@ from bs4 import BeautifulSoup
 from ..data import DataEntry, Queue
 from .get_opinions import get_opinions
 
-URL = "https://www.socialdemokraterna.se/var-politik/a-till-o"
+BASE_URL = "https://www.socialdemokraterna.se"
 
-SELECTOR = "li.active.currentpage > ul > li a"
+LIST_PATH = "/var-politik/a-till-o"
+
+SELECTOR = ".sap-ao-lettergroup-topic-box > a"
 
 
 def get_opinions_wrapper(queue: Queue, title: str, url: str):
@@ -18,7 +20,7 @@ def get_opinions_wrapper(queue: Queue, title: str, url: str):
 
 
 def get_pages() -> List[DataEntry]:
-    page = requests.get(URL)
+    page = requests.get(BASE_URL + LIST_PATH)
 
     soup = BeautifulSoup(page.text, "html.parser")
     elements = soup.select(SELECTOR)
@@ -28,7 +30,8 @@ def get_pages() -> List[DataEntry]:
 
     for element in elements:
         title = element.text
-        url = "https://www.socialdemokraterna.se" + element["href"]
+
+        url = BASE_URL + element["href"]
         thread = Thread(
             target=get_opinions_wrapper,
             args=(queue, title, url),

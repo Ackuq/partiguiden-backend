@@ -133,3 +133,6 @@ analytics-service-account.json
 
 # Postgres data
 .postgres-data
+
+# Mac files
+.DS_Store

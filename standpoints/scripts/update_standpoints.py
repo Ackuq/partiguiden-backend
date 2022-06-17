@@ -1,3 +1,4 @@
+from datetime import date
 from hashlib import sha256
 from typing import List
 
@@ -27,6 +28,7 @@ def _handle_standpoints_update(party_id: str) -> None:
             existing = Standpoint.objects.get(pk=id)
             existing.title = page.title
             existing.content = page.opinions
+            existing.date = date.today()
             existing.save()
         except Standpoint.DoesNotExist:
             Standpoint.objects.create(
