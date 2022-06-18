@@ -20,6 +20,7 @@ def get_opinions_wrapper(queue: Queue, title: str, url: str):
 
 def get_pages() -> List[DataEntry]:
     page = requests.get(BASE_URL + LIST_PATH)
+    page.encoding = "utf-8"
 
     soup = BeautifulSoup(page.text, "html.parser")
     elements = soup.select(SELECTOR)
