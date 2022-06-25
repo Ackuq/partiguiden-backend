@@ -1,0 +1,85 @@
+import asyncio
+import re
+from abc import abstractmethod
+from time import sleep
+from typing import List, Union
+
+import aiohttp
+import requests
+from bs4 import BeautifulSoup, Tag
+
+from .data_entry import DataEntry
+
+
+class PartyScraper:
+    @property
+    @abstractmethod
+    def base_url(self) -> str:
+        return NotImplemented
+
+    @property
+    @abstractmethod
+    def list_path(self) -> str:
+        return NotImplemented
+
+    @property
+    @abstractmethod
+    def list_selector(self) -> str:
+        return NotImplemented
+
+    @property
+    def absolute_urls(self) -> bool:
+        return True
+
+    @property
+    def path_regex(self) -> str:
+        return NotImplemented
+
+    @property
+    @abstractmethod
+    def opinion_tags(self) -> List[str]:
+        return NotImplemented
+
+    def _get_opinions(self, soup: BeautifulSoup) -> List[str]:
+        for tag in self.opinion_tags:
+            opinion_elements = soup.select(tag)
+            if len(opinion_elements) > 0:
+                break
+
+        return list(map(lambda el: el.text.strip(), opinion_elements))
+
+    async def _get_standpoint_page(self, element: Tag) -> Union[DataEntry, None]:
+        title = element.text
+        if title == "":
+            title = element["title"]
+        if not self.absolute_urls:
+            match = re.search(self.path_regex, element["href"])
+            if not match:
+                print(f"Failed to extract URL for page {title}, got path {element['href']}")
+                return None
+            url = self.base_url + match.group(0)
+        else:
+            url = element["href"]
+        if url == "":
+            print(f"Failed to extract URL for page {title}, got no path...")
+            return None
+        # Sleep so we do not get rate limited :)
+        sleep(0.1)
+        async with aiohttp.ClientSession() as session:
+            resp = await session.get(url)
+            html = await resp.text()
+            soup = BeautifulSoup(html, "html.parser")
+            opinions = self._get_opinions(soup)
+            return DataEntry(title=title, url=url, opinions=opinions)
+
+    def get_pages(self) -> List[DataEntry]:
+        loop = asyncio.get_event_loop()
+        html = requests.get(self.base_url + self.list_path)
+        # Override this in case of something failed
+        html.encoding = "utf-8"
+        soup = BeautifulSoup(html.text, "html.parser")
+        elements = soup.select(self.list_selector)
+        data_future = asyncio.gather(*[self._get_standpoint_page(element) for element in elements])
+        data = loop.run_until_complete(data_future)
+        result: List[DataEntry] = list(filter(None, data))
+        return result
