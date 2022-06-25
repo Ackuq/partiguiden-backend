@@ -11,6 +11,17 @@ from bs4 import BeautifulSoup, Tag
 from .data_entry import DataEntry
 
 
+def get_or_create_event_loop() -> asyncio.AbstractEventLoop:
+    try:
+        return asyncio.get_event_loop()
+    except RuntimeError as ex:
+        if "There is no current event loop in thread" in str(ex):
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            return asyncio.get_event_loop()
+        raise ex
+
+
 class PartyScraper:
     @property
     @abstractmethod
@@ -73,7 +84,7 @@ class PartyScraper:
             return DataEntry(title=title, url=url, opinions=opinions)
 
     def get_pages(self) -> List[DataEntry]:
-        loop = asyncio.get_event_loop()
+        loop = get_or_create_event_loop()
         html = requests.get(self.base_url + self.list_path)
         # Override this in case of something failed
         html.encoding = "utf-8"
