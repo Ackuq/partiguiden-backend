@@ -28,6 +28,44 @@ DEBUG = int(os.environ.get("DEBUG", 0))
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = str(os.environ.get("DJANGO_ALLOWED_HOSTS")).split(" ")
 
+
+# Logging configuration
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "detailed": {
+            "format": "[{levelname} {asctime}] {name} - {message}",
+            "style": "{",
+        },
+    },
+    "filters": {
+        "require_debug_false": {
+            "()": "django.utils.log.RequireDebugFalse",
+        },
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    "handlers": {
+        "console": {"level": "INFO", "class": "logging.StreamHandler", "formatter": "detailed"},
+    },
+    "loggers": {
+        "standpoints": {"handlers": ["console"], "level": "INFO"},
+        "django": {
+            "handlers": ["console"],
+            "propagate": True,
+        },
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}
+
+
 # Application definition
 
 
@@ -72,22 +110,6 @@ MIDDLEWARE = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
-
-if "SENTRY_DSN" in os.environ:
-    import sentry_sdk
-    from sentry_sdk.integrations.django import DjangoIntegration
-
-    sentry_sdk.init(  # type: ignore
-        dsn=os.environ["SENTRY_DSN"],
-        integrations=[DjangoIntegration()],
-        # Do not send any transactions
-        traces_sample_rate=0.0,
-        # If you wish to associate users to errors (assuming you are using
-        # django.contrib.auth) you may enable sending PII data.
-        send_default_pii=False,
-        environment=os.environ.get("ENV", "staging"),
-    )
-
 CORS_ORIGIN_WHITELIST = str(os.environ.get("DJANGO_CORS_WHITELIST")).split(" ")
 
 ROOT_URLCONF = "partiguiden.urls"
@@ -110,6 +132,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "partiguiden.wsgi.application"
 
+
+# Sentry configuration
+
+if "SENTRY_DSN" in os.environ:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(  # type: ignore
+        dsn=os.environ["SENTRY_DSN"],
+        integrations=[DjangoIntegration()],
+        # Do not send any transactions
+        traces_sample_rate=0.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=False,
+        environment=os.environ.get("ENV", "staging"),
+    )
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -164,4 +203,4 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_heroku.settings(locals(), logging=False)

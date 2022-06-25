@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import re
 from abc import abstractmethod
 from time import sleep
@@ -9,6 +10,8 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from .data_entry import DataEntry
+
+logger = logging.getLogger(__name__)
 
 
 def get_or_create_event_loop() -> asyncio.AbstractEventLoop:
@@ -66,13 +69,13 @@ class PartyScraper:
         if not self.absolute_urls:
             match = re.search(self.path_regex, element["href"])
             if not match:
-                print(f"Failed to extract URL for page {title}, got path {element['href']}")
+                logger.warn(f"Failed to extract URL for page {title}, got path {element['href']}")
                 return None
             url = self.base_url + match.group(0)
         else:
             url = element["href"]
         if url == "":
-            print(f"Failed to extract URL for page {title}, got no path...")
+            logger.warn(f"Failed to extract URL for page {title}, got no path...")
             return None
         # Sleep so we do not get rate limited :)
         sleep(0.1)

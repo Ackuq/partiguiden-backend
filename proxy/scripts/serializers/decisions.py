@@ -26,7 +26,6 @@ def decision_serializer(data: Dict, decisions: List, index: int):
     vote_search_term = "{}:{}".format(data.get("rm"), data.get("beteckning"))
 
     json_url = "https:{}".format(data.get("dokument_url_text")).replace(".text", ".json")
-    print(json_url)
     votes_exists = check_if_votes_exists(json_url)
 
     decisions[index] = {

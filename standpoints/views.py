@@ -1,3 +1,4 @@
+import logging
 from threading import Thread
 
 from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
@@ -12,6 +13,8 @@ from rest_framework.response import Response
 from .models import Party, Standpoint, Subject
 from .scripts.update_standpoints import update_standpoints
 from .serializer import PartySerializer, StandpointSerializer, SubjectListSerializer, SubjectSerializer
+
+logger = logging.getLogger(__name__)
 
 
 class StandpointFilter(FilterSet):
@@ -31,6 +34,7 @@ class StandpointView(viewsets.ModelViewSet):
     @action(detail=False, permission_classes=[IsAdminUser])
     def update_standpoints(self, request):
         party_id: str = request.GET.get("party")
+        logger.info(f"Got request to update standpoints for party {party_id}...")
         if party_id is None:
             return Response(
                 "Request must include a specific party",

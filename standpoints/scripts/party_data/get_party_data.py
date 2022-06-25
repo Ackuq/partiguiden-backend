@@ -1,8 +1,11 @@
+import logging
 from argparse import ArgumentParser, BooleanOptionalAction
 from typing import List
 
 from .data_entry import DataEntry
 from .scrapers import CScraper, KDScraper, LScraper, MPScraper, MScraper, SDScraper, SScraper, VScraper
+
+logger = logging.getLogger(__name__)
 
 
 def get_party_data(abbreviation: str) -> List[DataEntry]:
@@ -24,27 +27,25 @@ def get_party_data(abbreviation: str) -> List[DataEntry]:
     elif abbv_upper == "V":
         return VScraper().get_pages()
     else:
+        logger.warn(f"Could not find scraper for party {abbv_upper}")
         return []
 
 
 def test(party_abbrev: str, preview: bool):
     all_data = get_party_data(party_abbrev)
-    print("Number of entries: {}".format(len(all_data)))
-    print("Number of entries without content: {}".format(len([d for d in all_data if len(d.opinions) == 0])))
+
+    logger.info("Number of entries: {}".format(len(all_data)))
+    logger.info("Number of entries without content: {}".format(len([d for d in all_data if len(d.opinions) == 0])))
     for data in all_data:
         if len(data.title) > 100:
-            print("INVALID TITLE")
-            print(data.title)
+            logger.warn(f"INVALID TITLE: {data.title}")
         if len(data.url) > 150:
-            print("INVALID URL")
-            print(data.url)
+            logger.warn(f"INVALID URL: {data.url}")
         if len(data.opinions) == 0:
-            print("No content for {} at {}".format(data.title, data.url))
+            logger.warn(f"No content for {data.title} at {data.url}")
     if preview:
         for d in all_data:
-            print(d.title)
-            print(d.opinions)
-            print("--------------")
+            logger.info(f"\n{d.title}\n{d.opinions}")
 
 
 if __name__ == "__main__":
