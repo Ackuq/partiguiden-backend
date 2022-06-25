@@ -19,3 +19,7 @@ class SScraper(PartyScraper):
     @property
     def opinion_tags(self) -> List[str]:
         return ["div.sv-text-portlet.sv-use-margins > div.sv-text-portlet-content > ul > li"]
+
+    @property
+    def absolute_urls(self) -> bool:
+        return False

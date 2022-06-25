@@ -31,8 +31,8 @@ def _handle_standpoints_update(party_id: str) -> None:
     for page in pages:
         id = sha256(page.url.encode("utf-8")).hexdigest()
         try:
-            logger.info(f"Updating existing entry {page.title} for party {party_id}")
             existing = Standpoint.objects.get(pk=id)
+            logger.info(f"Updating existing entry {page.title} for party {party_id}")
             existing.title = page.title
             existing.content = page.opinions
             existing.date = date.today()
