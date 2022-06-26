@@ -18,7 +18,7 @@ class KDScraper(PartyScraper):
 
     @property
     def list_selector(self) -> str:
-        return ".sv-text-portlet .sv-text-portlet-content p strong"
+        return ".pagecontent .sv-text-portlet .sv-text-portlet-content p strong"
 
     @property
     def opinion_tags(self) -> List[str]:

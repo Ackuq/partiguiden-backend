@@ -49,6 +49,12 @@ def test(party_abbrev: str, preview: bool):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="[{levelname} {asctime}] {name} - {message}",
+        style="{",
+        handlers=[logging.StreamHandler()],
+    )
     parser = ArgumentParser("test_party_data", description="Test party data extraction")
 
     parser.add_argument("--party", "-p", required=True, type=str, help="The party to extract data from")
