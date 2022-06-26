@@ -1,6 +1,5 @@
 import logging
 from datetime import date
-from hashlib import sha256
 from typing import List
 
 from standpoints.models import Party, Standpoint
@@ -13,12 +12,12 @@ logger = logging.getLogger("standpoints")
 
 def _purge_old(party) -> None:
     logger.info(f"Purging invalid urls for party {party}...")
-    standpoints = Standpoint.objects.filter(party=party).values_list("id", "link")
-    invalid_ids: List[str] = get_invalid_urls(list(standpoints))
-    if len(invalid_ids) > 0:
-        logger.warn("Found invalid ids: {}".format(invalid_ids))
-        for invalid_id in invalid_ids:
-            Standpoint.objects.filter(pk=invalid_id).delete()
+    standpoints = list(Standpoint.objects.filter(party=party).values_list("link", flat=True))
+    invalid_urls: List[str] = get_invalid_urls(standpoints)
+    if len(invalid_urls) > 0:
+        logger.warn("Found invalid ids: {}".format(invalid_urls))
+        for invalid_url in invalid_urls:
+            Standpoint.objects.filter(pk=invalid_url).delete()
 
 
 def _handle_standpoints_update(party_id: str) -> None:
@@ -29,9 +28,8 @@ def _handle_standpoints_update(party_id: str) -> None:
     pages = get_party_data(party_id)
     logger.info(f"Found {len(pages)} for party {party_id}, writing new entries...")
     for page in pages:
-        id = sha256(page.url.encode("utf-8")).hexdigest()
         try:
-            existing = Standpoint.objects.get(pk=id)
+            existing = Standpoint.objects.get(pk=page.url)
             logger.info(f"Updating existing entry {page.title} for party {party_id}")
             existing.title = page.title
             existing.content = page.opinions
@@ -40,7 +38,6 @@ def _handle_standpoints_update(party_id: str) -> None:
         except Standpoint.DoesNotExist:
             logger.info(f"Creating entry {page.title} for party {party_id}")
             Standpoint.objects.create(
-                id=id,
                 title=page.title,
                 content=page.opinions,
                 link=page.url,

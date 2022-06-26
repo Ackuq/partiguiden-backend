@@ -45,10 +45,16 @@ def test(party_abbrev: str, preview: bool):
             logger.warn(f"No content for {data.title} at {data.url}")
     if preview:
         for d in all_data:
-            logger.info(f"\n{d.title}\n{d.opinions}")
+            logger.info(f"\n{d.url}\n{d.title}\n{d.opinions}")
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="[{levelname} {asctime}] {name} - {message}",
+        style="{",
+        handlers=[logging.StreamHandler()],
+    )
     parser = ArgumentParser("test_party_data", description="Test party data extraction")
 
     parser.add_argument("--party", "-p", required=True, type=str, help="The party to extract data from")

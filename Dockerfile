@@ -10,4 +10,4 @@ WORKDIR /usr/src/partiguiden-backend
 # Copy application code
 COPY . /usr/src/partiguiden-backend
 
-RUN pipenv install --system --dev
+RUN pipenv install --dev
