@@ -1,8 +1,11 @@
 import asyncio
+import logging
 from time import sleep
 from typing import List, Tuple
 
 import aiohttp
+
+logger = logging.getLogger(__name__)
 
 
 def get_or_create_event_loop() -> asyncio.AbstractEventLoop:
@@ -21,10 +24,12 @@ async def _check_url(id: str, url: str) -> Tuple[str, bool]:
     Returns tuple `(id, is_ok)`. Will get removed if `is_ok` is `False`.
     """
     # Sleep so we do not get rate limited :)
-    sleep(0.1)
+    sleep(0.2)
     async with aiohttp.ClientSession() as session:
         resp = await session.get(url)
         await resp.text()
+        if not resp.ok:
+            logger.warn(f"Got status {resp.status} when fetching URL {url}")
         return id, resp.ok
 
 
