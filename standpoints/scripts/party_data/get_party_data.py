@@ -45,7 +45,7 @@ def test(party_abbrev: str, preview: bool):
             logger.warn(f"No content for {data.title} at {data.url}")
     if preview:
         for d in all_data:
-            logger.info(f"\n{d.title}\n{d.opinions}")
+            logger.info(f"\n{d.url}\n{d.title}\n{d.opinions}")
 
 
 if __name__ == "__main__":
