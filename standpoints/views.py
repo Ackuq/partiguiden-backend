@@ -1,3 +1,4 @@
+import base64
 import logging
 from threading import Thread
 
@@ -30,6 +31,12 @@ class StandpointView(viewsets.ModelViewSet):
     queryset = Standpoint.objects.all()
     serializer_class = StandpointSerializer
     filterset_class = StandpointFilter
+
+    def get_object(self):
+        # The ID supplied is a base64 version of the PK
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        self.kwargs[lookup_url_kwarg] = base64.b64decode(self.kwargs[lookup_url_kwarg]).decode("utf-8")
+        return super().get_object()
 
     @action(detail=False, permission_classes=[IsAdminUser])
     def update_standpoints(self, request):

@@ -8,10 +8,10 @@ class StandpointSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Standpoint
-        fields = ("title", "content", "date", "link", "party", "subject")
+        fields = ("id", "title", "content", "date", "link", "party", "subject")
 
 
-class PartySerializer(serializers.HyperlinkedModelSerializer):
+class PartySerializer(serializers.ModelSerializer):
     """Serializer for parties"""
 
     class Meta:
