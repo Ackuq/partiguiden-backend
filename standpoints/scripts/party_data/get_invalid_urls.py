@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from time import sleep
+from random import randint
 from typing import List, Tuple
 
 import aiohttp
@@ -24,7 +24,7 @@ async def _check_url(id: str, url: str) -> Tuple[str, bool]:
     Returns tuple `(id, is_ok)`. Will get removed if `is_ok` is `False`.
     """
     # Sleep so we do not get rate limited :)
-    sleep(0.2)
+    await asyncio.sleep(randint(1, 100) / 10)
     async with aiohttp.ClientSession() as session:
         resp = await session.get(url)
         await resp.text()

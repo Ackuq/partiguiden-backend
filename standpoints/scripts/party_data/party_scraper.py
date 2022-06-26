@@ -2,7 +2,7 @@ import asyncio
 import logging
 import re
 from abc import abstractmethod
-from time import sleep
+from random import randint
 from typing import List, Union
 
 import aiohttp
@@ -81,7 +81,7 @@ class PartyScraper:
             logger.warn(f"Failed to extract URL for page {title}, got no path...")
             return None
         # Sleep so we do not get rate limited :)
-        sleep(0.1)
+        await asyncio.sleep(randint(1, 100) / 10)
         async with aiohttp.ClientSession() as session:
             resp = await session.get(url)
             html = await resp.text()
