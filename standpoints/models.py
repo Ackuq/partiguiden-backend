@@ -33,8 +33,7 @@ class Standpoint(models.Model):
     def __str__(self):
         return f"{self.title} - {self.party}"
 
-    id = models.CharField(max_length=64, primary_key=True)
-    link = models.CharField(max_length=150, verbose_name="Länk", unique=True)
+    link = models.CharField(max_length=150, verbose_name="Länk", unique=True, primary_key=True)
     title = models.CharField(max_length=100, verbose_name="Ståndpunkt", default="Titel", db_collation=DB_COLLATION)
     content = ArrayField(models.CharField(max_length=1000), verbose_name="Åsikt")
     # Update date of the content

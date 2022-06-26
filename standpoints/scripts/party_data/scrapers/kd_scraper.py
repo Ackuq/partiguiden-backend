@@ -34,7 +34,6 @@ class KDScraper(PartyScraper):
             id_element = parent_element.previous_sibling
             if id_element is not None and id_element.get("id") is not None:
                 url = self.base_url + self.list_path + "#" + id_element["id"]
-        print(url)
         opinions_text: str = element.parent.text.replace(title, "", 1).strip()  # Remove the redundant title start
         opinions = list(filter(len, opinions_text.splitlines()))  # If multiple lines, split and remove empty lines
 

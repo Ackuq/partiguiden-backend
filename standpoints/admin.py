@@ -6,6 +6,7 @@ from .models import Party, Standpoint, Subject
 @admin.register(Standpoint)
 class StandpointAdmin(admin.ModelAdmin):
     list_filter = ["party"]
+    readonly_fields = ["date"]
 
 
 @admin.register(Party)
