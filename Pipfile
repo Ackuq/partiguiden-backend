@@ -36,3 +36,4 @@ allow_prereleases = true
 format = "black ."
 lint = "flake8"
 import-sort = "isort ."
+test-scraper = "python -m standpoints.scripts.party_data.get_party_data"
