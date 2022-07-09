@@ -12,19 +12,21 @@ jobs:
               uses: actions/setup-python@v4
               with:
                   python-version: "3.10"
-            - name: Install pipenv
-              run: pip install pipenv
+            - name: Install Poetry
+              run: pip install "poetry==1.1.13"
             - name: Install PIP dependencies
-              run: pipenv install --dev
+              run: |
+                poetry config virtualenvs.create false
+                poetry install --no-interaction --no-ansi
             - name: Lint with Flake8
-              run: pipenv run lint
+              run: flake8
               if: always()
             - name: Lint with Black
-              run: pipenv run format --check
+              run: black .
               if: always()
             - name: Import sort with isort
-              run: pipenv run import-sort --check
+              run: isort .
               if: always()
             - name: Type check with mypy
-              run: pipenv run mypy
+              run: mypy
               if: always()

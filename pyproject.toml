@@ -1,3 +1,42 @@
+[tool.poetry]
+name = "partiguiden-backend"
+version = "0.1.0"
+description = "Backend for Partiguiden"
+authors = ["Axel Pettersson <axel@pettersson.cc>"]
+license = "MIT"
+packages = [
+    { include = "scripts", from="./standpoints" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "4.0.6"
+psycopg2-binary = "2.9.3"
+djangorestframework = "3.13.1"
+django-filter = "22.1"
+gunicorn = "20.1.0"
+django-heroku = "0.3.1"
+django-cors-headers = "3.13.0"
+djangorestframework-simplejwt = "5.2.0"
+sentry-sdk = "1.6.0"
+beautifulsoup4 = "4.11.1"
+google-analytics-data = "0.12.1"
+pyyaml = "6.0"
+uritemplate = "4.1.1"
+aiohttp = "3.8.1"
+
+[tool.poetry.dev-dependencies]
+flake8 = "4.0.1"
+black = "22.6.0"
+isort = "5.10.1"
+mypy = "0.961"
+types-requests = "2.28.0"
+pre-commit = "2.19.0"
+
+[build-system]
+requires = ["poetry-core==1.1.13e"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.black]
 line-length = 120
 exclude = "/*migrations/*/"
@@ -6,3 +45,6 @@ exclude = "/*migrations/*/"
 line_length = 120
 skip="migrations"
 profile="black"
+
+[tool.poetry.scripts]
+test-scraper = "standpoints.scripts.party_data.get_party_data:main"
