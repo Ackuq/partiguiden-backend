@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Backend for Partiguiden"
 authors = ["Axel Pettersson <axel@pettersson.cc>"]
 license = "MIT"
+packages = [
+    { include = "scripts", from="./standpoints" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -28,6 +31,7 @@ black = "22.6.0"
 isort = "5.10.1"
 mypy = "0.961"
 types-requests = "2.28.0"
+pre-commit = "2.19.0"
 
 [build-system]
 requires = ["poetry-core==1.1.13e"]
@@ -43,7 +47,4 @@ skip="migrations"
 profile="black"
 
 [tool.poetry.scripts]
-format = "black ."
-lint = "flake8"
-import-sort = "isort ."
-test-scraper = "python -m standpoints.scripts.party_data.get_party_data"
+test-scraper = "standpoints.scripts.party_data.get_party_data:main"

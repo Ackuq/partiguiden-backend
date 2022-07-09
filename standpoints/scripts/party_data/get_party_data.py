@@ -48,7 +48,7 @@ def test(party_abbrev: str, preview: bool):
             logger.info(f"\n{d.url}\n{d.title}\n{d.opinions}")
 
 
-if __name__ == "__main__":
+def main():
     logging.basicConfig(
         level=logging.DEBUG,
         format="[{levelname} {asctime}] {name} - {message}",
@@ -63,3 +63,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     test(args.party, args.preview)
+
+
+if __name__ == "__main__":
+    main()
