@@ -46,5 +46,9 @@ line_length = 120
 skip="migrations"
 profile="black"
 
+[tool.mypy]
+files = "partiguiden,standpoints"
+ignore_missing_imports = true
+
 [tool.poetry.scripts]
 test-scraper = "standpoints.scripts.party_data.get_party_data:main"
