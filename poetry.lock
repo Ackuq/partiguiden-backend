@@ -288,14 +288,14 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "google-analytics-data"
-version = "0.12.1"
+version = "0.13.0"
 description = ""
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
-google-api-core = {version = ">=1.31.5,<2.0.0 || >2.3.0,<3.0.0dev", extras = ["grpc"]}
+google-api-core = {version = ">=1.32.0,<2.0.0 || >=2.8.0,<3.0.0dev", extras = ["grpc"]}
 proto-plus = ">=1.15.0,<2.0.0dev"
 protobuf = ">=3.19.0,<4.0.0dev"
 
@@ -814,7 +814,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.5"
-content-hash = "2a3a6824aa4960c8e9d74d9dcc84c0dca421db6f6e4e375b59f9289ef4db7b6e"
+content-hash = "393e0840ad0440400f24c044710549bdfffe4934c6d70ce7ce5258157477af57"
 
 [metadata.files]
 aiohttp = [
@@ -1062,8 +1062,8 @@ frozenlist = [
     {file = "frozenlist-1.3.0.tar.gz", hash = "sha256:ce6f2ba0edb7b0c1d8976565298ad2deba6f8064d2bebb6ffce2ca896eb35b0b"},
 ]
 google-analytics-data = [
-    {file = "google-analytics-data-0.12.1.tar.gz", hash = "sha256:8d5436797338683ff80988d6303e1bbeca01a1d7ece73c248fe2315aa2ae70dc"},
-    {file = "google_analytics_data-0.12.1-py2.py3-none-any.whl", hash = "sha256:320a16df6624606abbceef85c6b0a67727eff48f27da347630929b3ee28cd5ff"},
+    {file = "google-analytics-data-0.13.0.tar.gz", hash = "sha256:a7d0b92e7ebfde3f883b1aa420851be47a4845f266a7eb62c7c39f6f0663c5ac"},
+    {file = "google_analytics_data-0.13.0-py2.py3-none-any.whl", hash = "sha256:5d0842bb1298454e782800a6690ed3e4e1c5c4d70f59a87cddd59c95d3325056"},
 ]
 google-api-core = [
     {file = "google-api-core-2.8.2.tar.gz", hash = "sha256:06f7244c640322b508b125903bb5701bebabce8832f85aba9335ec00b3d02edc"},
