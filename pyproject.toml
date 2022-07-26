@@ -30,7 +30,7 @@ flake8 = "4.0.1"
 black = "22.6.0"
 isort = "5.10.1"
 mypy = "0.971"
-types-requests = "2.28.3"
+types-requests = "2.28.4"
 pre-commit = "2.20.0"
 
 [build-system]
