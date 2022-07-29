@@ -81,7 +81,7 @@ class PartyScraper:
             logger.warn(f"Failed to extract URL for page {title}, got no path...")
             return None
         # Sleep so we do not get rate limited :)
-        await asyncio.sleep(randint(1, 100) / 10)
+        await asyncio.sleep(randint(1, 1000) / 10)
         try:
             async with aiohttp.ClientSession() as session:
                 resp = await session.get(url)
