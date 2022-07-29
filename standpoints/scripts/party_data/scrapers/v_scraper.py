@@ -15,25 +15,34 @@ class VScraper(PartyScraper):
 
     @property
     def list_path(self) -> str:
-        return "/politik-a-o/"
+        return "/var-politik/politik-a-o/"
 
     @property
     def list_selector(self) -> str:
-        return ".mo-card__cover-link"
+        return ".ModuleWrapper-module--component--W7iGr section a"
 
     @property
     def opinion_tags(self) -> List[str]:
-        return [
-            "p:-soup-contains('Vänsterpartiet vill bland annat:') + ul li",
-            ".or-wysiwyg.or-wysiwyg--article.or-wysiwyg--theme-red-white strong",
-        ]
+        return []
+
+    @property
+    def absolute_urls(self) -> bool:
+        return False
 
     def _get_opinions(self, soup: BeautifulSoup) -> List[str]:
-        opinions = soup.select(self.opinion_tags[0])
-        if len(opinions) == 0:
-            secondary = soup.select(self.opinion_tags[1])
-            if len(secondary) != 0:
-                return [secondary.pop(0).text.strip()]
-            else:
-                return []
-        return list(map(lambda el: el.text.strip(), opinions))
+        opinions: List[str] = []
+        preamble = soup.find("div", {"class": "ArticleBody-module--preamble--+K5Nt"})
+        if preamble is not None:
+            for paragraph in preamble.children:
+                opinion = paragraph.text.strip()
+                if opinion != "":
+                    opinions.append(opinion)
+        actions = soup.select_one("p:-soup-contains('Vänsterpartiet vill bland annat:') + p")
+        if actions is None:
+            actions = soup.select_one("p:-soup-contains('Vänsterpartiet vill bland annat:')")
+        if actions is not None:
+            opinions = opinions + [
+                text.strip()
+                for text in actions.text.replace("• ", "").replace("Vänsterpartiet vill bland annat:\n", "").split("\n")
+            ]
+        return opinions
