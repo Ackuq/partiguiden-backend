@@ -24,7 +24,7 @@ async def _check_url(url: str) -> Tuple[str, bool]:
     Returns tuple `(url, is_ok)`. Will get removed if `is_ok` is `False`.
     """
     # Sleep so we do not get rate limited :)
-    await asyncio.sleep(randint(1, 100) / 10)
+    await asyncio.sleep(randint(1, 1000) / 10)
     async with aiohttp.ClientSession() as session:
         resp = await session.get(url)
         await resp.text()
