@@ -11,6 +11,15 @@ class StandpointSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "content", "date", "link", "party", "subject")
 
 
+class UpdatePartyStandpointsSerializer(serializers.ModelSerializer):
+    """Serializer for updating party standpoints"""
+
+    class Meta:
+        model = Party
+        fields = ()
+        read_only_fields = ("id",)
+
+
 class PartySerializer(serializers.ModelSerializer):
     """Serializer for parties"""
 

@@ -2,7 +2,7 @@ import base64
 import logging
 from threading import Thread
 
-from django.http.response import HttpResponseBadRequest, HttpResponseNotFound
+from django.http import Http404
 from django_filters.filters import BooleanFilter, CharFilter
 from django_filters.filterset import FilterSet
 from rest_framework import viewsets
@@ -13,7 +13,13 @@ from rest_framework.response import Response
 
 from .models import Party, Standpoint, Subject
 from .scripts.update_standpoints import update_standpoints
-from .serializer import PartySerializer, StandpointSerializer, SubjectListSerializer, SubjectSerializer
+from .serializer import (
+    PartySerializer,
+    StandpointSerializer,
+    SubjectListSerializer,
+    SubjectSerializer,
+    UpdatePartyStandpointsSerializer,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -35,29 +41,28 @@ class StandpointView(viewsets.ModelViewSet):
     def get_object(self):
         # The ID supplied is a base64 version of the PK
         lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
-        self.kwargs[lookup_url_kwarg] = base64.b64decode(self.kwargs[lookup_url_kwarg]).decode("utf-8")
-        return super().get_object()
-
-    @action(detail=False, permission_classes=[IsAdminUser])
-    def update_standpoints(self, request):
-        party_id: str = request.GET.get("party")
-        logger.info(f"Got request to update standpoints for party {party_id}...")
-        if party_id is None:
-            return Response(
-                "Request must include a specific party",
-                status=HttpResponseBadRequest.status_code,
-            )
         try:
-            Thread(target=lambda: update_standpoints(party_id)).start()
-            return Response("Your request was successful")
-
-        except Party.DoesNotExist:
-            return Response("Could not find specific party", status=HttpResponseNotFound.status_code)
+            self.kwargs[lookup_url_kwarg] = base64.b64decode(self.kwargs[lookup_url_kwarg]).decode("utf-8")
+        except Exception:
+            raise Http404
+        return super().get_object()
 
 
 class PartyView(viewsets.ModelViewSet):
     queryset = Party.objects.all()
     serializer_class = PartySerializer
+
+    @action(
+        methods=["POST"],
+        detail=True,
+        permission_classes=[IsAdminUser],
+        serializer_class=UpdatePartyStandpointsSerializer,
+    )
+    def update_standpoints(self, request, pk=None):
+        party: Party = self.get_object()
+        logger.info(f"Got request to update standpoints for party {pk}...")
+        Thread(target=lambda: update_standpoints(party)).start()
+        return Response("Your request was successful")
 
 
 class SubjectView(viewsets.ModelViewSet):
