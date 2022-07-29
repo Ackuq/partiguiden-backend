@@ -81,13 +81,17 @@ class PartyScraper:
             logger.warn(f"Failed to extract URL for page {title}, got no path...")
             return None
         # Sleep so we do not get rate limited :)
-        await asyncio.sleep(randint(1, 100) / 10)
-        async with aiohttp.ClientSession() as session:
-            resp = await session.get(url)
-            html = await resp.text()
-            soup = BeautifulSoup(html, "html.parser")
-            opinions = self._get_opinions(soup)
-            return DataEntry(title=title, url=url, opinions=opinions)
+        await asyncio.sleep(randint(1, 1000) / 10)
+        try:
+            async with aiohttp.ClientSession() as session:
+                resp = await session.get(url)
+                html = await resp.text()
+                soup = BeautifulSoup(html, "html.parser")
+                opinions = self._get_opinions(soup)
+                return DataEntry(title=title, url=url, opinions=opinions)
+        except Exception as e:
+            logger.error(f"Request to {url} failed with error", exc_info=e)
+            return None
 
     def get_pages(self) -> List[DataEntry]:
         loop = get_or_create_event_loop()
@@ -96,6 +100,7 @@ class PartyScraper:
         html.encoding = "utf-8"
         soup = BeautifulSoup(html.text, "html.parser")
         elements = soup.select(self.list_selector)
+        logger.info(f"Found {len(elements)} list elements.")
         data_future = asyncio.gather(*[self._get_standpoint_page(element) for element in elements])
         data = loop.run_until_complete(data_future)
         result: List[DataEntry] = list(filter(None, data))
