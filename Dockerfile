@@ -1,6 +1,6 @@
 FROM python:3.10.6
 
-ENV POETRY_VERSION=1.1.13
+ENV POETRY_VERSION=1.1.14
 
 # Get pipenv
 RUN pip install "poetry==$POETRY_VERSION"
