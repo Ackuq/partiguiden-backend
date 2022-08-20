@@ -1,32 +1,32 @@
-name: CI Workflow
+name: CI
 
 on: [push]
 
 jobs:
-    check:
-        name: Check
-        runs-on: ubuntu-20.04
-        steps:
-            - uses: actions/checkout@v3
-            - name: Use Python 3.10.6
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.10.6"
-            - name: Install Poetry
-              run: pip install "poetry==1.1.14"
-            - name: Install PIP dependencies
-              run: |
-                poetry config virtualenvs.create false
-                poetry install --no-interaction --no-ansi
-            - name: Lint with Flake8
-              run: flake8
-              if: always()
-            - name: Lint with Black
-              run: black .
-              if: always()
-            - name: Import sort with isort
-              run: isort .
-              if: always()
-            - name: Type check with mypy
-              run: mypy
-              if: always()
+  check:
+    name: Check
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Python 3.10.6
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10.6"
+      - name: Install Poetry
+        run: pip install "poetry==1.1.14"
+      - name: Install PIP dependencies
+        run: |
+          poetry config virtualenvs.create false
+          poetry install --no-interaction --no-ansi
+      - name: Lint with Flake8
+        run: flake8
+        if: always()
+      - name: Lint with Black
+        run: black .
+        if: always()
+      - name: Import sort with isort
+        run: isort .
+        if: always()
+      - name: Type check with mypy
+        run: mypy
+        if: always()
