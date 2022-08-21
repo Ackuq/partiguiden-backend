@@ -35,7 +35,11 @@ class SDScraper(PartyScraper):
 
         opinions_tag = element.select(self.opinion_tags[0])
 
-        opinions = [opinion.text.strip() for opinion in opinions_tag if opinion.text != "Länk till relevant dokument"]
+        opinions = [
+            opinion.text.strip()
+            for opinion in opinions_tag
+            if opinion.text != "Länk till relevant dokument" and opinion.name != "ul"
+        ]
 
         if title != "" or url != "":
             return DataEntry(title=title, url=url, opinions=opinions)
