@@ -27,10 +27,16 @@ async def _check_url(url: str) -> Tuple[str, bool]:
     await asyncio.sleep(randint(1, 1000) / 10)
     async with aiohttp.ClientSession() as session:
         resp = await session.get(url)
-        await resp.text()
-        if not resp.ok:
-            logger.warn(f"Got status {resp.status} when fetching URL {url}")
-        return url, resp.ok
+        try:
+            await resp.text()
+            if not resp.ok:
+                logger.warn(f"Got status {resp.status} when fetching URL {url}")
+            return url, resp.ok
+        except UnicodeDecodeError:
+            logger.warn(
+                f"Got unicode decode error when decoding response of URL {url}, response status was {resp.status}"
+            )
+            return url, resp.ok
 
 
 def get_invalid_urls(standpoints: List[str]) -> List[str]:

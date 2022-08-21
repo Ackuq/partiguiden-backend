@@ -17,22 +17,25 @@ class SDScraper(PartyScraper):
 
     @property
     def list_selector(self) -> str:
-        return ".post-row.post-type-our-politics"
+        return ".a-o__table.a-o-table.bt tbody tr"
 
     @property
     def opinion_tags(self) -> List[str]:
-        return [":nth-child(2)"]
+        return [":nth-child(2) > *"]
 
-    title_tag = ":nth-child(1) > a"
+    title_tag = ":nth-child(1)"
 
     async def _get_standpoint_page(self, element: Tag) -> Union[DataEntry, None]:
-        title_tag = element.select(self.title_tag).pop()
+        title_tag = element.select_one(self.title_tag)
         title = title_tag.text
 
-        url = title_tag["href"]
+        title_hash = title.lower().replace(" ", "-").replace("å", "a").replace("ä", "a").replace("ö", "o").strip()
 
-        opinions_tag = element.select(self.opinion_tags[0]).pop()
-        opinions = opinions_tag.text.split("\n\n")
+        url = self.base_url + self.list_path + "#" + title_hash
+
+        opinions_tag = element.select(self.opinion_tags[0])
+
+        opinions = [opinion.text.strip() for opinion in opinions_tag if opinion.text != "Länk till relevant dokument"]
 
         if title != "" or url != "":
             return DataEntry(title=title, url=url, opinions=opinions)
