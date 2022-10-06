@@ -238,7 +238,7 @@ pytz = "*"
 
 [[package]]
 name = "djangorestframework-simplejwt"
-version = "5.2.0"
+version = "5.2.1"
 description = "A minimal JSON Web Token authentication plugin for Django REST Framework"
 category = "main"
 optional = false
@@ -250,6 +250,7 @@ djangorestframework = "*"
 pyjwt = ">=1.7.1,<3"
 
 [package.extras]
+crypto = ["cryptography (>=3.3.1)"]
 dev = ["Sphinx (>=1.6.5,<2)", "cryptography", "flake8", "ipython", "isort", "pep8", "pytest", "pytest-cov", "pytest-django", "pytest-watch", "pytest-xdist", "python-jose (==3.3.0)", "sphinx-rtd-theme (>=0.1.9)", "tox", "twine", "wheel"]
 doc = ["Sphinx (>=1.6.5,<2)", "sphinx-rtd-theme (>=0.1.9)"]
 lint = ["flake8", "isort", "pep8"]
@@ -837,7 +838,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "3.10.6"
-content-hash = "532ab9705eaaed212de8e89e13a3f0c6d1eebb06f09a69cdcf7b6bb08fc309cd"
+content-hash = "811718ff362a907a013589b58edc7aaf9aa66e3cde81be7fd1a97c7008679865"
 
 [metadata.files]
 aiohttp = [
@@ -1012,8 +1013,8 @@ djangorestframework = [
     {file = "djangorestframework-3.13.1.tar.gz", hash = "sha256:0c33407ce23acc68eca2a6e46424b008c9c02eceb8cf18581921d0092bc1f2ee"},
 ]
 djangorestframework-simplejwt = [
-    {file = "djangorestframework_simplejwt-5.2.0-py3-none-any.whl", hash = "sha256:bcc4cb74dcb637ca1e17eed35276bd618ab19491f8c53e65dee6271177c355e8"},
-    {file = "djangorestframework_simplejwt-5.2.0.tar.gz", hash = "sha256:a60b09afb27d91ad1d7ac904cc632bd52cecead8f389f0fa1532ceb0fb757a74"},
+    {file = "djangorestframework_simplejwt-5.2.1-py3-none-any.whl", hash = "sha256:1965246979f521c24a3be81d305c3df40bb564e136823868aebc1a1b16e51b8c"},
+    {file = "djangorestframework_simplejwt-5.2.1.tar.gz", hash = "sha256:7613874c322a3f6e330cc118f9f00a3db957fea7f8e3bed81ba451853cd1dbd5"},
 ]
 filelock = [
     {file = "filelock-3.8.0-py3-none-any.whl", hash = "sha256:617eb4e5eedc82fc5f47b6d61e4d11cb837c56cb4544e39081099fa17ad109d4"},
