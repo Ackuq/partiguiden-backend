@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: Use Python 3.10.6
+      - name: Use Python 3.11.0
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10.6"
+          python-version: "3.11.0"
       - name: Install Poetry
-        run: pip install "poetry==1.1.14"
+        run: pip install "poetry==1.2.2"
       - name: Install PIP dependencies
         run: |
           poetry config virtualenvs.create false

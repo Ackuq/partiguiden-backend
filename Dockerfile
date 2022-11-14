@@ -1,6 +1,8 @@
-FROM python:3.10.6
+FROM python:3.11.0
 
-ENV POETRY_VERSION=1.1.14
+ENV POETRY_VERSION=1.2.2
+
+RUN pip install --upgrade pip setuptools
 
 # Get pipenv
 RUN pip install "poetry==$POETRY_VERSION"
