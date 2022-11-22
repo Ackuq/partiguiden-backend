@@ -19,3 +19,14 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
+  - repo: https://github.com/jazzband/pip-tools
+    rev: 6.10.0
+    hooks:
+      - id: pip-compile
+        name: pip-compile requirements-dev.in
+        args: [requirements-dev.in]
+        files: ^requirements-dev\.(in|txt)-
+      - id: pip-compile
+        name: pip-compile requirements.txt
+        args: [requirements.txt]
+        files: ^requirements\.(in|txt)$
