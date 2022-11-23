@@ -12,3 +12,4 @@ google-analytics-data==0.14.2
 pyyaml==6.0
 uritemplate==4.1.1
 aiohttp==3.8.3
+django-stubs-ext==0.7.0

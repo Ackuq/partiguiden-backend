@@ -5,6 +5,4 @@ from . import views
 
 router = routers.DefaultRouter()
 
-urlpatterns = [path("popular/", views.PopularView.as_view())]
-
-urlpatterns += router.urls  # type: ignore
+urlpatterns = [path("popular/", views.PopularView.as_view())] + router.urls
