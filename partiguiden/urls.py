@@ -12,7 +12,6 @@ urlpatterns = [
     path("token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("", include("standpoints.urls")),
     path("analytics/", include("analytics.urls")),
-    path("proxy/", include("proxy.urls")),
     path(
         "swagger-ui/",
         TemplateView.as_view(template_name="swagger-ui.html", extra_context={"schema_url": "openapi-schema"}),

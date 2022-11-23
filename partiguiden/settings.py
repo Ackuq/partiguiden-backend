@@ -82,7 +82,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "standpoints",
     "analytics",
-    "proxy",
 ]
 
 REST_FRAMEWORK = {
