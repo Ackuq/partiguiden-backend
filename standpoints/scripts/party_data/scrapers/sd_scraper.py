@@ -27,6 +27,8 @@ class SDScraper(PartyScraper):
 
     async def _get_standpoint_page(self, element: Tag) -> Union[DataEntry, None]:
         title_tag = element.select_one(self.title_tag)
+        if title_tag is None:
+            return None
         title = title_tag.text
 
         title_hash = title.lower().replace(" ", "-").replace("å", "a").replace("ä", "a").replace("ö", "o").strip()

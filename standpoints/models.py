@@ -18,7 +18,7 @@ class Party(models.Model):
 
 
 class Subject(models.Model):
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     name = models.CharField(max_length=50, verbose_name="Sakområde", unique=True, db_collation=DB_COLLATION)

@@ -31,7 +31,7 @@ def get_party_data(abbreviation: str, limit: Optional[int] = None) -> List[DataE
         return []
 
 
-def test(party_abbrev: str, preview: bool, limit: Optional[int] = None):
+def test(party_abbrev: str, preview: bool, limit: Optional[int] = None) -> None:
     all_data = get_party_data(party_abbrev, limit)
 
     logger.info("Number of entries: {}".format(len(all_data)))
@@ -48,7 +48,7 @@ def test(party_abbrev: str, preview: bool, limit: Optional[int] = None):
             logger.info(f"\n{d.url}\n{d.title}\n{d.opinions}")
 
 
-def main():
+def main() -> None:
     logging.basicConfig(
         level=logging.DEBUG,
         format="[{levelname} {asctime}] {name} - {message}",

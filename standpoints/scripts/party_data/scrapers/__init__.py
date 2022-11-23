@@ -1,4 +1,6 @@
 # flake8: noqa
+__all__ = ["CScraper", "KDScraper", "LScraper", "MScraper", "MPScraper", "SScraper", "SDScraper", "VScraper"]
+
 from .c_scraper import CScraper
 from .kd_scraper import KDScraper
 from .l_scraper import LScraper

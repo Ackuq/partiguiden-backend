@@ -7,4 +7,4 @@ router = routers.DefaultRouter()
 
 urlpatterns = [path("popular/", views.PopularView.as_view())]
 
-urlpatterns += router.urls
+urlpatterns += router.urls  # type: ignore

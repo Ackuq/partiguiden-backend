@@ -1,9 +1,10 @@
-from rest_framework import serializers
+from django.db.models import QuerySet
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField
 
 from .models import Party, Standpoint, Subject
 
 
-class StandpointSerializer(serializers.ModelSerializer):
+class StandpointSerializer(ModelSerializer[Standpoint]):
     """Serializer for standpoints"""
 
     class Meta:
@@ -11,7 +12,7 @@ class StandpointSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "content", "date", "link", "party", "subject")
 
 
-class UpdatePartyStandpointsSerializer(serializers.ModelSerializer):
+class UpdatePartyStandpointsSerializer(ModelSerializer[Party]):
     """Serializer for updating party standpoints"""
 
     class Meta:
@@ -20,7 +21,7 @@ class UpdatePartyStandpointsSerializer(serializers.ModelSerializer):
         read_only_fields = ("id",)
 
 
-class PartySerializer(serializers.ModelSerializer):
+class PartySerializer(ModelSerializer[Party]):
     """Serializer for parties"""
 
     class Meta:
@@ -28,7 +29,7 @@ class PartySerializer(serializers.ModelSerializer):
         fields = ("id", "name")
 
 
-class SubjectListSerializer(serializers.ModelSerializer):
+class SubjectListSerializer(ModelSerializer[Subject]):
     """Serializer when listing subjects"""
 
     class Meta:
@@ -36,16 +37,16 @@ class SubjectListSerializer(serializers.ModelSerializer):
         fields = ("id", "name", "related_subjects")
 
 
-class RelatedSubjectIdsField(serializers.PrimaryKeyRelatedField):
+class RelatedSubjectIdsField(PrimaryKeyRelatedField[Subject]):
     """Special serializer for showing related subjects"""
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Subject]:
         if "view" in self.context and hasattr(self.context["view"], "kwargs") and "pk" in self.context["view"].kwargs:
             return Subject.objects.all().exclude(pk=self.context["view"].kwargs["pk"])
         return Subject.objects.all()
 
 
-class SubjectSerializer(serializers.ModelSerializer):
+class SubjectSerializer(ModelSerializer[Subject]):
     """Serializer for subjects"""
 
     standpoints = StandpointSerializer(many=True, read_only=True)
