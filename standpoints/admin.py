@@ -1,20 +1,20 @@
-from django.contrib import admin
+from django.contrib.admin import ModelAdmin, register
 
 from .models import Party, Standpoint, Subject
 
 
-@admin.register(Standpoint)
-class StandpointAdmin(admin.ModelAdmin):
+@register(Standpoint)
+class StandpointAdmin(ModelAdmin[Standpoint]):
     list_display = ["title", "link", "party"]
     list_filter = ["party"]
     readonly_fields = ["date"]
 
 
-@admin.register(Party)
-class PartyAdmin(admin.ModelAdmin):
+@register(Party)
+class PartyAdmin(ModelAdmin[Party]):
     pass
 
 
-@admin.register(Subject)
-class SubjectAdmin(admin.ModelAdmin):
+@register(Subject)
+class SubjectAdmin(ModelAdmin[Subject]):
     pass

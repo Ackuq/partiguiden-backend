@@ -1,4 +1,7 @@
 from django.db import migrations
+from django.db.backends.base.schema import BaseDatabaseSchemaEditor
+from django.db.migrations.state import StateApps
+
 
 PARTIES = [
     {"id": "S", "name": "Socialdemokraterna"},
@@ -12,7 +15,7 @@ PARTIES = [
 ]
 
 
-def create_parties(apps, schema_editor):
+def create_parties(apps: StateApps, schema_editor: BaseDatabaseSchemaEditor) -> None:
     Party = apps.get_model("standpoints", "Party")
     db_alias = schema_editor.connection.alias
 

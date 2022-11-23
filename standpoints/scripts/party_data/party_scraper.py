@@ -3,7 +3,7 @@ import logging
 import re
 from abc import abstractmethod
 from random import randint
-from typing import List, Optional, Union
+from typing import List, Optional
 
 import aiohttp
 import requests
@@ -62,21 +62,26 @@ class PartyScraper:
 
         return list(map(lambda el: el.text.strip(), opinion_elements))
 
-    async def _get_standpoint_page(self, element: Tag) -> Union[DataEntry, None]:
+    async def _get_standpoint_page(self, element: Tag) -> Optional[DataEntry]:
         title = element.text
         if title == "":
-            title = element["title"]
+            title_element = element["title"]
+            title = title_element[0] if isinstance(title_element, list) else title_element
+
+        href_element = element["href"]
+        href = href_element[0] if isinstance(href_element, list) else href_element
+
         if not self.absolute_urls:
             if self.path_regex is not NotImplemented:
-                match = re.search(self.path_regex, element["href"])
+                match = re.search(self.path_regex, href)
                 if not match:
                     logger.warn(f"Failed to extract URL for page {title}, got path {element['href']}")
                     return None
                 url = self.base_url + match.group(0)
             else:
-                url = self.base_url + element["href"]
+                url = self.base_url + href
         else:
-            url = element["href"]
+            url = href
         if url == "":
             logger.warn(f"Failed to extract URL for page {title}, got no path...")
             return None
@@ -99,10 +104,13 @@ class PartyScraper:
         # Override this in case of something failed
         html.encoding = "utf-8"
         soup = BeautifulSoup(html.text, "html.parser")
-        elements = soup.select(self.list_selector)
+
+        elements = list(soup.select(self.list_selector))
         logger.info(f"Found {len(elements)} list elements.")
+
         if limit is not None:
             elements = elements[:limit]
+
         data_future = asyncio.gather(*[self._get_standpoint_page(element) for element in elements])
         data = loop.run_until_complete(data_future)
         result: List[DataEntry] = list(filter(None, data))

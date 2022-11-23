@@ -32,7 +32,7 @@ class VScraper(PartyScraper):
     def _get_opinions(self, soup: BeautifulSoup) -> List[str]:
         opinions: List[str] = []
         preamble = soup.find("div", {"class": "ArticleBody-module--preamble--+K5Nt"})
-        if preamble is not None:
+        if preamble is not None and hasattr(preamble, "children"):
             for paragraph in preamble.children:
                 opinion = paragraph.text.strip()
                 if opinion != "":

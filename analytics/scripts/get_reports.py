@@ -1,4 +1,5 @@
 import os
+from typing import List, Tuple
 
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import (
@@ -11,6 +12,7 @@ from google.analytics.data_v1beta.types import (
     RunReportRequest,
     RunReportResponse,
 )
+from rest_framework.utils.serializer_helpers import ReturnDict
 
 from standpoints.models import Subject
 from standpoints.serializer import SubjectListSerializer
@@ -18,7 +20,7 @@ from standpoints.serializer import SubjectListSerializer
 ANALYTICS_PROPERTY = os.environ.get("ANALYTICS_PROPERTY", "0")
 
 
-def format_popular(report: RunReportResponse):
+def format_popular(report: RunReportResponse) -> List[Tuple[ReturnDict, int]]:
     data = []
 
     for row in report.rows:
@@ -37,7 +39,7 @@ def format_popular(report: RunReportResponse):
     return data
 
 
-def get_popular_standpoints(client: BetaAnalyticsDataClient):
+def get_popular_standpoints(client: BetaAnalyticsDataClient) -> List[Tuple[ReturnDict, int]]:
     request = RunReportRequest(
         property="properties/{}".format(ANALYTICS_PROPERTY),
         dimensions=[Dimension(name="pagePathPlusQueryString")],
