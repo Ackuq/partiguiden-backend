@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: "3.11.0"
       - name: Install PIP dependencies
-        run: pip install -r requirements-dev.txt
+        run: pip install -r requirements.txt -r requirements-dev.txt
       - name: Lint check
         run: make lint
         if: always()
