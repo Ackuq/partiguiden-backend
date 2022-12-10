@@ -6,8 +6,8 @@ install-dev:
 	python -m pip install -r requirements-dev.txt
 
 compile:
-	pip-compile requirements.in
-	pip-compile requirements-dev.in
+	pip-compile pyproject.toml
+	pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
 
 lint:
 	python -m flake8
