@@ -27,10 +27,10 @@ repos:
     rev: 6.10.0
     hooks:
       - id: pip-compile
-        name: pip-compile requirements-dev.in
-        args: [requirements-dev.in]
-        files: ^requirements-dev\.(in|txt)-
+        name: pip-compile main
+        args: [pyproject.toml]
+        files: ^(pyproject\.toml|requirements\.txt)$
       - id: pip-compile
-        name: pip-compile requirements.txt
-        args: [requirements.in]
-        files: ^requirements\.(in|txt)$
+        name: pip-compile dev
+        args: [--extra=dev, --output-file=requirements-dev.txt, pyproject.toml]
+        files: ^(pyproject\.toml|requirements-dev\.txt)$
