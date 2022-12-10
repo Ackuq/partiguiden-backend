@@ -1,3 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "partiguiden_backend"
+version = "1.0"
+dependencies = [
+    "django",
+    "psycopg2-binary",
+    "djangorestframework",
+    "django-filter",
+    "gunicorn",
+    "django-heroku",
+    "django-cors-headers",
+    "djangorestframework-simplejwt",
+    "sentry-sdk",
+    "beautifulsoup4",
+    "google-analytics-data",
+    "pyyaml",
+    "uritemplate",
+    "aiohttp",
+    "django-stubs-ext"
+]
+
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "black",
+    "isort",
+    "mypy",
+    "types-requests",
+    "types-beautifulsoup4",
+    "pre-commit",
+    "django-stubs",
+    "djangorestframework-stubs"
+]
+
+
 [tool.black]
 line-length = 120
 exclude = "/*migrations/*/"
