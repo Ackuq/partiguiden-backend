@@ -105,7 +105,7 @@ isort==5.11.4
     # via partiguiden_backend (pyproject.toml)
 mccabe==0.7.0
     # via flake8
-multidict==6.0.3
+multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
