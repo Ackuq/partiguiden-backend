@@ -122,7 +122,7 @@ nodeenv==1.7.0
     # via pre-commit
 pathspec==0.10.3
     # via black
-platformdirs==2.6.0
+platformdirs==2.6.2
     # via
     #   black
     #   virtualenv
