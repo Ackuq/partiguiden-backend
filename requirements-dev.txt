@@ -205,7 +205,7 @@ urllib3==1.26.13
     #   sentry-sdk
 virtualenv==20.17.1
     # via pre-commit
-whitenoise==6.2.0
+whitenoise==6.3.0
     # via django-heroku
 yarl==1.8.2
     # via aiohttp
