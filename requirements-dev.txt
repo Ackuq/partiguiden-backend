@@ -128,7 +128,7 @@ platformdirs==2.6.2
     #   virtualenv
 pre-commit==2.21.0
     # via partiguiden_backend (pyproject.toml)
-proto-plus==1.22.1
+proto-plus==1.22.2
     # via google-analytics-data
 protobuf==4.21.12
     # via
