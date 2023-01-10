@@ -82,7 +82,7 @@ multidict==6.0.4
     # via
     #   aiohttp
     #   yarl
-proto-plus==1.22.1
+proto-plus==1.22.2
     # via google-analytics-data
 protobuf==4.21.12
     # via
