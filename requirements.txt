@@ -107,7 +107,7 @@ pytz==2022.7
     # via djangorestframework
 pyyaml==6.0
     # via partiguiden_backend (pyproject.toml)
-requests==2.28.1
+requests==2.28.2
     # via google-api-core
 rsa==4.9
     # via google-auth
