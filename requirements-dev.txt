@@ -120,7 +120,7 @@ mypy-extensions==0.4.3
     #   mypy
 nodeenv==1.7.0
     # via pre-commit
-pathspec==0.10.3
+pathspec==0.11.0
     # via black
 platformdirs==2.6.2
     # via
