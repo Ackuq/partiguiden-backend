@@ -126,7 +126,7 @@ platformdirs==2.6.2
     # via
     #   black
     #   virtualenv
-pre-commit==3.0.1
+pre-commit==3.0.2
     # via partiguiden_backend (pyproject.toml)
 proto-plus==1.22.2
     # via google-analytics-data
