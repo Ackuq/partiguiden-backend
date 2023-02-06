@@ -114,7 +114,7 @@ mypy==0.991
     #   django-stubs
     #   djangorestframework-stubs
     #   partiguiden_backend (pyproject.toml)
-mypy-extensions==0.4.3
+mypy-extensions==1.0.0
     # via
     #   black
     #   mypy
