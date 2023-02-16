@@ -177,7 +177,7 @@ toml==0.10.2
     # via pre-commit
 tomli==2.0.1
     # via django-stubs
-types-beautifulsoup4==4.11.6.5
+types-beautifulsoup4==4.11.6.6
     # via partiguiden_backend (pyproject.toml)
 types-pytz==2022.7.1.0
     # via django-stubs
