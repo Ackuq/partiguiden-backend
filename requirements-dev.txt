@@ -181,7 +181,7 @@ types-beautifulsoup4==4.11.6.6
     # via partiguiden_backend (pyproject.toml)
 types-pytz==2022.7.1.0
     # via django-stubs
-types-pyyaml==6.0.12.6
+types-pyyaml==6.0.12.7
     # via
     #   django-stubs
     #   djangorestframework-stubs
