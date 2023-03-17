@@ -57,7 +57,7 @@ django-stubs==1.15.0
     # via
     #   djangorestframework-stubs
     #   partiguiden_backend (pyproject.toml)
-django-stubs-ext==0.7.0
+django-stubs-ext==0.8.0
     # via
     #   django-stubs
     #   partiguiden_backend (pyproject.toml)
