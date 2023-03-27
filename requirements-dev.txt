@@ -153,7 +153,7 @@ pyflakes==3.0.1
     # via flake8
 pyjwt==2.6.0
     # via djangorestframework-simplejwt
-pytz==2022.7.1
+pytz==2023.2
     # via djangorestframework
 pyyaml==6.0
     # via
