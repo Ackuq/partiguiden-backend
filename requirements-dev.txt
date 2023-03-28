@@ -69,7 +69,7 @@ djangorestframework-simplejwt==5.2.2
     # via partiguiden_backend (pyproject.toml)
 djangorestframework-stubs==1.10.0
     # via partiguiden_backend (pyproject.toml)
-filelock==3.10.6
+filelock==3.10.7
     # via virtualenv
 flake8==6.0.0
     # via partiguiden_backend (pyproject.toml)
