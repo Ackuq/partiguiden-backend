@@ -189,7 +189,7 @@ types-requests==2.28.11.16
     # via
     #   djangorestframework-stubs
     #   partiguiden_backend (pyproject.toml)
-types-urllib3==1.26.25.9
+types-urllib3==1.26.25.10
     # via types-requests
 typing-extensions==4.5.0
     # via
