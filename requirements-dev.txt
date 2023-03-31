@@ -179,7 +179,7 @@ tomli==2.0.1
     # via django-stubs
 types-beautifulsoup4==4.12.0.1
     # via partiguiden_backend (pyproject.toml)
-types-pytz==2023.2.0.1
+types-pytz==2023.3.0.0
     # via django-stubs
 types-pyyaml==6.0.12.9
     # via
