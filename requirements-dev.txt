@@ -36,7 +36,7 @@ distlib==0.3.6
     # via virtualenv
 dj-database-url==1.3.0
     # via django-heroku
-django==4.1.7
+django==4.2
     # via
     #   dj-database-url
     #   django-cors-headers
