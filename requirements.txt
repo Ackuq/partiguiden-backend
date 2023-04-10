@@ -14,7 +14,7 @@ async-timeout==4.0.2
     # via aiohttp
 attrs==22.2.0
     # via aiohttp
-beautifulsoup4==4.12.1
+beautifulsoup4==4.12.2
     # via partiguiden_backend (pyproject.toml)
 cachetools==5.3.0
     # via google-auth
