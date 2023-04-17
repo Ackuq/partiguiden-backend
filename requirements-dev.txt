@@ -169,7 +169,7 @@ sentry-sdk==1.18.0
     # via partiguiden_backend (pyproject.toml)
 six==1.16.0
     # via google-auth
-soupsieve==2.4
+soupsieve==2.4.1
     # via beautifulsoup4
 sqlparse==0.4.3
     # via django
