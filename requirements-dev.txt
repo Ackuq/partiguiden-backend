@@ -171,7 +171,7 @@ six==1.16.0
     # via google-auth
 soupsieve==2.4.1
     # via beautifulsoup4
-sqlparse==0.4.3
+sqlparse==0.4.4
     # via django
 toml==0.10.2
     # via pre-commit
