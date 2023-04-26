@@ -95,7 +95,7 @@ grpcio-status==1.54.0
     # via google-api-core
 gunicorn==20.1.0
     # via partiguiden_backend (pyproject.toml)
-identify==2.5.22
+identify==2.5.23
     # via pre-commit
 idna==3.4
     # via
