@@ -159,7 +159,7 @@ pyyaml==6.0
     # via
     #   partiguiden_backend (pyproject.toml)
     #   pre-commit
-requests==2.30.0
+requests==2.31.0
     # via
     #   djangorestframework-stubs
     #   google-api-core
