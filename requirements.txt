@@ -127,7 +127,7 @@ urllib3==1.26.15
     # via
     #   requests
     #   sentry-sdk
-whitenoise==6.4.0
+whitenoise==6.5.0
     # via django-heroku
 yarl==1.9.2
     # via aiohttp
