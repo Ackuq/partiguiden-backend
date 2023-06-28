@@ -57,7 +57,7 @@ django-stubs==4.2.1
     # via
     #   djangorestframework-stubs
     #   partiguiden_backend (pyproject.toml)
-django-stubs-ext==4.2.1
+django-stubs-ext==4.2.2
     # via
     #   django-stubs
     #   partiguiden_backend (pyproject.toml)
