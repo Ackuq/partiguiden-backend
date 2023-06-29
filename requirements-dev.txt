@@ -67,7 +67,7 @@ djangorestframework==3.14.0
     #   partiguiden_backend (pyproject.toml)
 djangorestframework-simplejwt==5.2.2
     # via partiguiden_backend (pyproject.toml)
-djangorestframework-stubs==3.14.1
+djangorestframework-stubs==3.14.2
     # via partiguiden_backend (pyproject.toml)
 filelock==3.12.2
     # via virtualenv
