@@ -38,7 +38,7 @@ django==4.2.3
     #   djangorestframework
     #   djangorestframework-simplejwt
     #   partiguiden_backend (pyproject.toml)
-django-cors-headers==4.1.0
+django-cors-headers==4.2.0
     # via partiguiden_backend (pyproject.toml)
 django-filter==23.2
     # via partiguiden_backend (pyproject.toml)
