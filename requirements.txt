@@ -52,7 +52,7 @@ djangorestframework==3.14.0
     #   partiguiden_backend (pyproject.toml)
 djangorestframework-simplejwt==5.2.2
     # via partiguiden_backend (pyproject.toml)
-frozenlist==1.3.3
+frozenlist==1.4.0
     # via
     #   aiohttp
     #   aiosignal
