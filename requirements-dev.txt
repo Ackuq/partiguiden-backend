@@ -30,7 +30,7 @@ charset-normalizer==3.2.0
     # via
     #   aiohttp
     #   requests
-click==8.1.4
+click==8.1.5
     # via black
 distlib==0.3.6
     # via virtualenv
