@@ -105,7 +105,7 @@ pyjwt==2.7.0
     # via djangorestframework-simplejwt
 pytz==2023.3
     # via djangorestframework
-pyyaml==6.0
+pyyaml==6.0.1
     # via partiguiden_backend (pyproject.toml)
 requests==2.31.0
     # via google-api-core
