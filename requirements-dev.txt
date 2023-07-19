@@ -151,7 +151,7 @@ pycodestyle==2.10.0
     # via flake8
 pyflakes==3.0.1
     # via flake8
-pyjwt==2.7.0
+pyjwt==2.8.0
     # via djangorestframework-simplejwt
 pytz==2023.3
     # via djangorestframework
