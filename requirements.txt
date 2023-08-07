@@ -91,7 +91,7 @@ protobuf==4.23.4
     #   googleapis-common-protos
     #   grpcio-status
     #   proto-plus
-psycopg2==2.9.6
+psycopg2==2.9.7
     # via django-heroku
 psycopg2-binary==2.9.6
     # via partiguiden_backend (pyproject.toml)
