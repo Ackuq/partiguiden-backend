@@ -130,7 +130,7 @@ pre-commit==3.3.3
     # via partiguiden_backend (pyproject.toml)
 proto-plus==1.22.3
     # via google-analytics-data
-protobuf==4.23.4
+protobuf==4.24.0
     # via
     #   google-analytics-data
     #   google-api-core
