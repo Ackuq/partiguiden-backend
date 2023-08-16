@@ -34,7 +34,7 @@ click==8.1.6
     # via black
 distlib==0.3.7
     # via virtualenv
-dj-database-url==2.0.0
+dj-database-url==2.1.0
     # via django-heroku
 django==4.2.4
     # via
