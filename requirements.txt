@@ -28,7 +28,7 @@ charset-normalizer==3.2.0
     #   requests
 dj-database-url==2.1.0
     # via django-heroku
-django==4.2.4
+django==4.2.5
     # via
     #   dj-database-url
     #   django-cors-headers
