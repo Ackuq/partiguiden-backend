@@ -103,7 +103,7 @@ pyasn1-modules==0.3.0
     # via google-auth
 pyjwt==2.8.0
     # via djangorestframework-simplejwt
-pytz==2023.3
+pytz==2023.3.post1
     # via djangorestframework
 pyyaml==6.0.1
     # via partiguiden_backend (pyproject.toml)
