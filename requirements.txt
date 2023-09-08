@@ -84,7 +84,7 @@ multidict==6.0.4
     #   yarl
 proto-plus==1.22.3
     # via google-analytics-data
-protobuf==4.24.2
+protobuf==4.24.3
     # via
     #   google-analytics-data
     #   google-api-core
