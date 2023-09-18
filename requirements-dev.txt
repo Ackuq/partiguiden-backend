@@ -191,7 +191,7 @@ types-requests==2.31.0.2
     #   partiguiden_backend (pyproject.toml)
 types-urllib3==1.26.25.14
     # via types-requests
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   django-stubs
     #   django-stubs-ext
