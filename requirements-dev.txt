@@ -185,7 +185,7 @@ types-pyyaml==6.0.12.12
     # via
     #   django-stubs
     #   djangorestframework-stubs
-types-requests==2.31.0.4
+types-requests==2.31.0.5
     # via
     #   djangorestframework-stubs
     #   partiguiden_backend (pyproject.toml)
