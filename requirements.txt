@@ -93,7 +93,7 @@ protobuf==4.24.3
     #   proto-plus
 psycopg2==2.9.7
     # via django-heroku
-psycopg2-binary==2.9.7
+psycopg2-binary==2.9.8
     # via partiguiden_backend (pyproject.toml)
 pyasn1==0.5.0
     # via
