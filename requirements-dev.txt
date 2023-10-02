@@ -81,7 +81,7 @@ google-analytics-data==0.17.1
     # via partiguiden_backend (pyproject.toml)
 google-api-core[grpc]==2.11.1
     # via google-analytics-data
-google-auth==2.22.0
+google-auth==2.23.2
     # via google-api-core
 googleapis-common-protos==1.60.0
     # via
